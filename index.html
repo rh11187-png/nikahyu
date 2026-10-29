@@ -71,15 +71,18 @@
         .portal-admin { background: #2c3e50; color: #fff; } .portal-admin:hover { background: #1a252f; transform: translateY(-3px); }
 
         /* ADMIN */
-        .admin-layout { display: flex; height: 100vh; background: var(--admin-bg); overflow: hidden; }
-        .admin-sidebar { width: 250px; background: var(--admin-sidebar); color: var(--admin-sidebar-text); display: flex; flex-direction: column; }
-        .sidebar-header { padding: 20px; background: rgba(0,0,0,0.2); text-align: center; }
-        .sidebar-menu { list-style: none; padding: 0; margin: 0; flex: 1; overflow-y: auto; }
-        .sidebar-menu li { padding: 15px 20px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 10px; }
-        .sidebar-menu li:hover, .sidebar-menu li.active { background: #d4af37; color: #fff; }
-        .admin-content { flex: 1; overflow-y: auto; padding: 30px; }
-        .admin-card { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
-        .admin-card-title { font-size: 1.2rem; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; color: #333; }
+        .admin-layout { display: flex; height: 100vh; background: var(--admin-bg); overflow: hidden; font-family: 'Lato', sans-serif; }
+        .admin-sidebar { width: 260px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: var(--admin-sidebar-text); display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 10; }
+        .sidebar-header { padding: 25px 20px; background: rgba(0,0,0,0.25); text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .sidebar-menu { list-style: none; padding: 10px 0; margin: 0; flex: 1; overflow-y: auto; }
+        .sidebar-menu li { padding: 15px 25px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 1.05rem; }
+        .sidebar-menu li:hover { background: rgba(255,255,255,0.05); color: #fff; }
+        .sidebar-menu li.active { background: linear-gradient(90deg, rgba(212,175,55,0.15) 0%, transparent 100%); border-left-color: #d4af37; color: #d4af37; }
+        .admin-content { flex: 1; overflow-y: auto; padding: 40px; background: #f8fafc; }
+        .admin-card { background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 30px; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .admin-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
+        .admin-card-title { font-size: 1.3rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 25px; color: #1e293b; display: flex; align-items: center; gap: 10px; }
+        .admin-card-title i { color: #d4af37; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
         .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
@@ -200,19 +203,19 @@
                 </div>
                 <!-- MEMPELAI -->
                 <div id="tab-mempelai" class="admin-tab" style="display: none;">
-                    <div class="admin-card"><h3 class="admin-card-title">Mempelai Pria</h3><div class="grid-2"><div class="form-group"><label>Nama</label><input type="text" id="in-groom-name" class="form-control"></div><div class="form-group"><label>Orang Tua</label><input type="text" id="in-groom-parents" class="form-control"></div></div></div>
-                    <div class="admin-card"><h3 class="admin-card-title">Mempelai Wanita</h3><div class="grid-2"><div class="form-group"><label>Nama</label><input type="text" id="in-bride-name" class="form-control"></div><div class="form-group"><label>Orang Tua</label><input type="text" id="in-bride-parents" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-male"></i> Mempelai Pria</h3><div class="grid-2"><div class="form-group"><label>Nama Lengkap</label><input type="text" id="in-groom-name" class="form-control"></div><div class="form-group"><label>Nama Panggilan</label><input type="text" id="in-groom-nickname" class="form-control" placeholder="Contoh: Romeo"></div><div class="form-group" style="grid-column: span 2;"><label>Nama Orang Tua</label><input type="text" id="in-groom-parents" class="form-control" placeholder="Putra dari Bapak X & Ibu Y"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-female"></i> Mempelai Wanita</h3><div class="grid-2"><div class="form-group"><label>Nama Lengkap</label><input type="text" id="in-bride-name" class="form-control"></div><div class="form-group"><label>Nama Panggilan</label><input type="text" id="in-bride-nickname" class="form-control" placeholder="Contoh: Juliet"></div><div class="form-group" style="grid-column: span 2;"><label>Nama Orang Tua</label><input type="text" id="in-bride-parents" class="form-control" placeholder="Putri dari Bapak A & Ibu B"></div></div></div>
                 </div>
                 <!-- ACARA -->
                 <div id="tab-acara" class="admin-tab" style="display: none;">
-                    <div class="admin-card"><h3 class="admin-card-title">Akad Nikah</h3><div class="grid-2"><div class="form-group"><label>Tanggal</label><input type="text" id="in-akad-date" class="form-control"></div><div class="form-group"><label>Waktu</label><input type="text" id="in-akad-time" class="form-control"></div></div></div>
-                    <div class="admin-card"><h3 class="admin-card-title">Resepsi</h3><div class="grid-2"><div class="form-group"><label>Tanggal</label><input type="text" id="in-resepsi-date" class="form-control"></div><div class="form-group"><label>Waktu</label><input type="text" id="in-resepsi-time" class="form-control"></div></div></div>
-                    <div class="admin-card"><h3 class="admin-card-title">Lokasi</h3><div class="form-group"><label>Nama Gedung</label><input type="text" id="in-location-name" class="form-control"></div><div class="form-group"><label>Link Maps</label><input type="text" id="in-location-link" class="form-control"></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-ring"></i> Akad Nikah</h3><div class="grid-2"><div class="form-group"><label>Tanggal</label><input type="date" id="in-akad-date" class="form-control"></div><div class="form-group"><label>Waktu</label><input type="time" id="in-akad-time" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-glass-cheers"></i> Resepsi</h3><div class="grid-2"><div class="form-group"><label>Tanggal</label><input type="date" id="in-resepsi-date" class="form-control"></div><div class="form-group"><label>Waktu</label><input type="time" id="in-resepsi-time" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-map-marker-alt"></i> Lokasi</h3><div class="form-group"><label>Nama Gedung / Tempat</label><input type="text" id="in-location-name" class="form-control" placeholder="Contoh: Gedung Serbaguna"></div><div class="form-group"><label>Link Google Maps</label><input type="url" id="in-location-link" class="form-control" placeholder="https://maps.app.goo.gl/..."></div></div>
                 </div>
                 <!-- MEDIA -->
                 <div id="tab-media" class="admin-tab" style="display: none;">
                     <div class="admin-card">
-                        <h3 class="admin-card-title">Galeri Foto (Pilih 1 untuk tambah)</h3>
+                        <h3 class="admin-card-title"><i class="fas fa-camera"></i> Galeri Foto (Pilih 1 untuk tambah)</h3>
                         <div class="form-group"><label>Upload Foto (Otomatis Simpan ke Drive)</label><input type="file" id="in-gallery-upload" class="form-control" accept="image/*"></div>
                         <button class="btn btn-primary" onclick="uploadSingleMedia('gallery')">Upload Foto ke Galeri</button>
                     </div>
@@ -229,11 +232,11 @@
                         <div class="form-group"><label>Gambar QRIS</label><input type="file" id="in-qris-upload" class="form-control" accept="image/*"></div>
                         <button class="btn btn-primary" onclick="uploadSingleMedia('qris')">Upload QRIS</button>
                     </div>
-                    <div class="admin-card"><h3 class="admin-card-title">Rekening</h3><div class="grid-2"><div class="form-group"><label>Bank</label><input type="text" id="in-bank-name" class="form-control"></div><div class="form-group"><label>No Rek</label><input type="text" id="in-bank-account" class="form-control"></div><div class="form-group"><label>Atas Nama</label><input type="text" id="in-bank-owner" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-money-check-alt"></i> Rekening</h3><div class="grid-2"><div class="form-group"><label>Bank</label><input type="text" id="in-bank-name" class="form-control" placeholder="Contoh: BCA"></div><div class="form-group"><label>No Rek</label><input type="text" id="in-bank-account" class="form-control"></div><div class="form-group" style="grid-column: span 2;"><label>Atas Nama</label><input type="text" id="in-bank-owner" class="form-control"></div></div></div>
                 </div>
                 <!-- SEBAR -->
                 <div id="tab-sebar" class="admin-tab" style="display: none;">
-                    <div class="admin-card"><h3 class="admin-card-title">Link Generator</h3><div style="background: #e8f4f8; padding: 20px; border-radius: 10px; border: 1px dashed #3498db;"><div class="form-group"><label>Nama Tamu</label><div style="display: flex; gap: 10px;"><input type="text" id="generator-name" class="form-control"><button class="btn" style="background:#3498db; color:#fff;" onclick="generateLink()">Buat Link</button></div></div><div id="generated-result" style="display: none;"><code id="result-link" style="display:block; background:#fff; padding:10px; margin-top:10px; word-break:break-all;"></code><button class="btn" style="background:#2c3e50; color:#fff; margin-top:10px; font-size:0.8rem;" onclick="copyLink()">Salin Link</button></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-link"></i> Link Generator</h3><div style="background: #e8f4f8; padding: 25px; border-radius: 12px; border: 1px dashed #3498db;"><div class="form-group"><label>Nama Tamu</label><div style="display: flex; gap: 10px;"><input type="text" id="generator-name" class="form-control" placeholder="Ketik nama tamu di sini..."><button class="btn" style="background:#3498db; color:#fff;" onclick="generateLink()"><i class="fas fa-magic"></i> Buat Link</button></div></div><div id="generated-result" style="display: none; margin-top: 20px;"><p style="font-size: 0.9rem; margin-bottom: 5px; color: #555;">Link Undangan Anda:</p><code id="result-link" style="display:block; background:#fff; padding:15px; border-radius: 8px; word-break:break-all; border: 1px solid #ccc;"></code><div style="display: flex; gap: 10px; margin-top: 15px;"><button class="btn" style="background:#2c3e50; color:#fff; flex: 1;" onclick="copyLink()"><i class="fas fa-copy"></i> Salin Link</button><button class="btn" style="background:#d4af37; color:#fff; flex: 1;" onclick="previewLink()"><i class="fas fa-eye"></i> Preview Undangan</button></div></div></div></div>
                 </div>
             </div>
         </div>
@@ -241,7 +244,7 @@
 
     <!-- TEMPLATE: GUEST INVITATION -->
     <template id="tpl-invitation">
-        <button class="back-portal-btn" onclick="stopAudio(); initApp()"><i class="fas fa-home"></i> Beranda</button>
+        <button class="back-portal-btn" id="btn-back-portal" onclick="stopAudio(); initApp()"><i class="fas fa-home"></i> Beranda</button>
         <audio id="inv-bgm" loop></audio>
         <div class="audio-btn" id="audio-toggle" onclick="toggleAudio()"><i class="fas fa-compact-disc spin" id="audio-icon"></i></div>
 
@@ -260,9 +263,19 @@
             <section class="inv-section bg-white-dynamic" style="padding-top: 5rem;">
                 <h2 class="serif" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-dark);">Sang Mempelai</h2>
                 <div class="couple-wrapper">
-                    <div class="person"><img src="https://ui-avatars.com/api/?name=Pria&background=random" id="out-groom-img" alt="Groom"><h3 class="cursive" style="font-size: 2.5rem;" id="out-groom-name">Pria</h3><p style="color: var(--text-light);" id="out-groom-parents">Orang Tua</p></div>
-                    <div class="cursive" style="font-size: 4rem; line-height: 1;">&</div>
-                    <div class="person"><img src="https://ui-avatars.com/api/?name=Wanita&background=random" id="out-bride-img" alt="Bride"><h3 class="cursive" style="font-size: 2.5rem;" id="out-bride-name">Wanita</h3><p style="color: var(--text-light);" id="out-bride-parents">Orang Tua</p></div>
+                    <div class="person">
+                        <img src="" id="out-groom-img" alt="Groom">
+                        <h3 class="cursive" style="font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--primary);" id="out-groom-nickname">Pria</h3>
+                        <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-dark);" id="out-groom-name">Nama Lengkap Pria</p>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;" id="out-groom-parents">Orang Tua</p>
+                    </div>
+                    <div class="cursive" style="font-size: 4rem; line-height: 1; display: flex; align-items: center; color: var(--primary);">&</div>
+                    <div class="person">
+                        <img src="" id="out-bride-img" alt="Bride">
+                        <h3 class="cursive" style="font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--primary);" id="out-bride-nickname">Wanita</h3>
+                        <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-dark);" id="out-bride-name">Nama Lengkap Wanita</p>
+                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;" id="out-bride-parents">Orang Tua</p>
+                    </div>
                 </div>
             </section>
 
@@ -328,17 +341,22 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            if(urlParams.get('to')) guestNameTarget = decodeURIComponent(urlParams.get('to'));
-            initApp();
+            if(urlParams.get('to')) {
+                guestNameTarget = decodeURIComponent(urlParams.get('to'));
+                initApp(true); // Langsung ke mode tamu
+            } else {
+                initApp(false);
+            }
         });
 
-        async function initApp() {
-            renderTemplate('tpl-portal');
+        async function initApp(isDirectGuest = false) {
+            if(!isDirectGuest) renderTemplate('tpl-portal');
             showLoading("Memuat Data Utama...");
             const res = await fetchAPI('get_data');
             hideLoading();
             if(res.success) {
                 appData = res.data;
+                if(isDirectGuest) loadGuestView();
             } else {
                 showToast('error', 'Gagal memuat data dari server.');
             }
@@ -451,8 +469,10 @@
             });
 
             document.getElementById('in-groom-name').value = appData.groomName || '';
+            document.getElementById('in-groom-nickname').value = appData.groomNickname || '';
             document.getElementById('in-groom-parents').value = appData.groomParents || '';
             document.getElementById('in-bride-name').value = appData.brideName || '';
+            document.getElementById('in-bride-nickname').value = appData.brideNickname || '';
             document.getElementById('in-bride-parents').value = appData.brideParents || '';
             document.getElementById('in-akad-date').value = appData.akadDate || '';
             document.getElementById('in-akad-time').value = appData.akadTime || '';
@@ -470,8 +490,10 @@
             const payload = {
                 theme: appData.theme,
                 groomName: document.getElementById('in-groom-name').value,
+                groomNickname: document.getElementById('in-groom-nickname').value,
                 groomParents: document.getElementById('in-groom-parents').value,
                 brideName: document.getElementById('in-bride-name').value,
+                brideNickname: document.getElementById('in-bride-nickname').value,
                 brideParents: document.getElementById('in-bride-parents').value,
                 akadDate: document.getElementById('in-akad-date').value,
                 akadTime: document.getElementById('in-akad-time').value,
@@ -553,62 +575,108 @@
             });
         }
 
+        function previewLink() {
+            const linkText = document.getElementById('result-link').innerText;
+            if(linkText) window.open(linkText, '_blank');
+        }
+
+        /* --- DATE FORMATTER --- */
+        function formatDateIndo(dateStr) {
+            if(!dateStr) return '-';
+            try {
+                const d = new Date(dateStr);
+                if(isNaN(d.getTime())) return dateStr;
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                return d.toLocaleDateString('id-ID', options);
+            } catch(e) { return dateStr; }
+        }
+
         /* --- GUEST INVITATION --- */
         let isAudioPlaying = false;
         function setupInvitation() {
             const wrapper = document.getElementById('inv-wrapper');
             wrapper.className = `invitation-wrapper ${appData.theme || 'theme-gold'}`;
 
-            const shortGroom = (appData.groomName || 'Pria').split(' ')[0];
-            const shortBride = (appData.brideName || 'Wanita').split(' ')[0];
-            const coupleTitle = `${shortGroom} & ${shortBride}`;
+            // Menyembunyikan tombol 'Beranda' jika diakses menggunakan link tamu
+            if(window.location.search.includes('to=')) {
+                document.getElementById('btn-back-portal').style.display = 'none';
+            }
+
+            const groomNick = appData.groomNickname || (appData.groomName || 'Pria').split(' ')[0];
+            const brideNick = appData.brideNickname || (appData.brideName || 'Wanita').split(' ')[0];
+            const coupleTitle = `${groomNick} & ${brideNick}`;
             
             document.getElementById('out-cover-title').innerText = coupleTitle;
             document.getElementById('out-footer-title').innerText = coupleTitle;
-            document.getElementById('out-cover-date').innerText = (appData.akadDate || '').toUpperCase();
+            document.getElementById('out-cover-date').innerText = formatDateIndo(appData.akadDate).toUpperCase();
             document.getElementById('out-guest-name').innerText = guestNameTarget;
             
-            document.getElementById('out-groom-name').innerText = shortGroom;
-            document.getElementById('out-groom-parents').innerText = appData.groomParents;
-            document.getElementById('out-bride-name').innerText = shortBride;
-            document.getElementById('out-bride-parents').innerText = appData.brideParents;
-            
-            document.getElementById('out-akad-date').innerText = appData.akadDate;
-            document.getElementById('out-akad-time').innerText = appData.akadTime;
-            document.getElementById('out-resepsi-date').innerText = appData.resepsiDate;
-            document.getElementById('out-resepsi-time').innerText = appData.resepsiTime;
-            
-            document.getElementById('out-location-name').innerText = appData.locationName;
-            document.getElementById('out-location-btn').href = appData.locationLink || '#';
-            
-            document.getElementById('out-bank-name').innerText = appData.bankName;
-            document.getElementById('out-bank-account').innerText = appData.bankAccount;
-            document.getElementById('out-bank-owner').innerText = appData.bankOwner;
-            
-            if(appData.qrisUrl) document.getElementById('out-qris-img').src = appData.qrisUrl;
-            if(appData.audioUrl) document.getElementById('inv-bgm').src = appData.audioUrl;
+            // Set Inisial Avatar berdasarkan Nickname
+            document.getElementById('out-groom-img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(groomNick)}&color=fff&size=200`;
+            document.getElementById('out-bride-img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(brideNick)}&color=fff&size=200`;
 
-            const gc = document.getElementById('out-gallery-container');
-            gc.innerHTML = '';
-            if(appData.galleryUrls) {
-                appData.galleryUrls.forEach(url => {
-                    const img = document.createElement('img'); img.src = url; gc.appendChild(img);
-                });
+            document.getElementById('out-groom-nickname').innerText = groomNick;
+            document.getElementById('out-groom-name').innerText = appData.groomName || 'Nama Lengkap Pria';
+            document.getElementById('out-groom-parents').innerText = appData.groomParents || 'Orang Tua';
+            
+            document.getElementById('out-bride-nickname').innerText = brideNick;
+            document.getElementById('out-bride-name').innerText = appData.brideName || 'Nama Lengkap Wanita';
+            document.getElementById('out-bride-parents').innerText = appData.brideParents || 'Orang Tua';
+            
+            document.getElementById('out-akad-date').innerText = formatDateIndo(appData.akadDate);
+            document.getElementById('out-akad-time').innerText = appData.akadTime ? `${appData.akadTime} WIB` : '-';
+            document.getElementById('out-resepsi-date').innerText = formatDateIndo(appData.resepsiDate);
+            document.getElementById('out-resepsi-time').innerText = appData.resepsiTime ? `${appData.resepsiTime} WIB - Selesai` : '-';
+            
+            document.getElementById('out-location-name').innerText = appData.locationName || '-';
+            
+            const locBtn = document.getElementById('out-location-btn');
+            if(appData.locationLink) {
+                locBtn.href = appData.locationLink;
+                locBtn.style.display = 'inline-block';
+            } else {
+                locBtn.style.display = 'none';
             }
+
+            // Set Gallery
+            const galContainer = document.getElementById('out-gallery-container');
+            galContainer.innerHTML = '';
+            if(appData.galleryUrls && appData.galleryUrls.length > 0) {
+                appData.galleryUrls.forEach(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    galContainer.appendChild(img);
+                });
+            } else {
+                galContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">Belum ada foto galeri.</p>';
+            }
+
+            // Set QRIS & Bank
+            document.getElementById('out-qris-img').src = appData.qrisUrl || 'https://placehold.co/200x200/eee/999?text=QRIS+Belum+Diatur';
+            document.getElementById('out-bank-name').innerText = appData.bankName || '-';
+            document.getElementById('out-bank-account').innerText = appData.bankAccount || '-';
+            document.getElementById('out-bank-owner').innerText = appData.bankOwner || '-';
+
+            // Set Audio
+            const bgm = document.getElementById('inv-bgm');
+            if(appData.audioUrl) bgm.src = appData.audioUrl;
         }
 
         function openInvitation() {
-            const cover = document.getElementById('cover-screen');
-            const wrapper = document.getElementById('inv-wrapper');
-            cover.style.transform = 'translateY(-100vh)'; cover.style.opacity = '0';
-            wrapper.classList.add('open');
+            document.getElementById('cover-screen').style.transform = 'translateY(-100%)';
+            document.getElementById('cover-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('cover-screen').style.display = 'none';
+            }, 1000);
+            
+            document.getElementById('inv-wrapper').classList.add('open');
             document.getElementById('audio-toggle').classList.add('visible');
-            setTimeout(() => { cover.style.display = 'none'; }, 1000);
             
             const bgm = document.getElementById('inv-bgm');
-            if(bgm.src) {
+            if(bgm.src && bgm.src !== window.location.href) {
                 bgm.play().then(() => {
-                    isAudioPlaying = true; document.getElementById('audio-icon').className = 'fas fa-compact-disc spin';
+                    isAudioPlaying = true; 
+                    document.getElementById('audio-icon').className = 'fas fa-compact-disc spin';
                 }).catch(e => console.log("Autoplay prevented by browser"));
             }
         }
