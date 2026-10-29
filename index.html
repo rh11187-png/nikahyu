@@ -3,137 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Undangan Pernikahan Terpadu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>Undangan Pernikahan Digital - Viding Edition</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* =========================================
-           GLOBAL VARIABLES & RESET
+           GLOBAL VARIABLES & THEMES (VIDING STYLE)
            ========================================= */
         :root {
-            var(--primary): #d4af37; var(--primary-dark): #b5952f;
-            var(--bg-color): #fbf8f1; var(--text-dark): #2c3e50;
-            var(--text-light): #7f8c8d; var(--white): #ffffff;
-            var(--border-color): #ddd; var(--admin-bg): #f4f6f9;
-            var(--admin-sidebar): #1e293b; var(--admin-sidebar-text): #cbd5e1;
+            --primary: #c5a059; 
+            --primary-dark: #9e7a32;
+            --bg-color: #faf8f5; 
+            --text-dark: #2b2b2b;
+            --text-light: #666666; 
+            --white: #ffffff;
+            --border-color: #e2d8c3; 
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --font-serif: 'Playfair Display', serif;
+            --font-cursive: 'Great Vibes', cursive;
+            --font-heading: 'Cinzel', serif;
+            --font-sans: 'Lato', sans-serif;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 16px;
         }
 
-        /* THEME CLASSES */
-        .theme-gold { --primary: #d4af37; --primary-dark: #b5952f; --bg-color: #fbf8f1; --text-dark: #2c3e50; --white: #ffffff; }
-        .theme-rustic { --primary: #6b8e23; --primary-dark: #556b2f; --bg-color: #f4f5f0; --text-dark: #3e4a3d; --white: #ffffff; }
-        .theme-midnight { --primary: #f1c40f; --primary-dark: #f39c12; --bg-color: #0f172a; --text-dark: #f8fafc; --text-light: #cbd5e1; --white: #1e293b; --border-color: #334155; }
-        .theme-rose { --primary: #b76e79; --primary-dark: #a05a66; --bg-color: #fdf6f5; --text-dark: #4a3b3c; --white: #ffffff; }
-        .theme-vintage { --primary: #8b5a2b; --primary-dark: #6e4822; --bg-color: #f4ecd8; --text-dark: #3b2f2f; --white: #fdfbf7; }
-        .theme-sapphire { --primary: #0f52ba; --primary-dark: #0a3d8c; --bg-color: #f0f4f8; --text-dark: #102a43; --white: #ffffff; }
-        .theme-bohemian { --primary: #cd5c5c; --primary-dark: #b22222; --bg-color: #fdf5e6; --text-dark: #5c4033; --white: #ffffff; }
-        .theme-minimalist { --primary: #555555; --primary-dark: #333333; --bg-color: #ffffff; --text-dark: #111111; --white: #f9f9f9; }
-        .theme-velvet { --primary: #800020; --primary-dark: #600018; --bg-color: #fffaf0; --text-dark: #3b1c20; --white: #ffffff; }
-        .theme-emerald { --primary: #50c878; --primary-dark: #3cb371; --bg-color: #f5fffa; --text-dark: #2f4f4f; --white: #ffffff; }
+        /* 10 THEME CLASSES INSPIRED BY VIDING.CO */
+        .theme-envelope-velvet { --primary: #c5a059; --primary-dark: #9b7936; --bg-color: #3b0914; --text-dark: #f8f1e5; --text-light: #d4c3b3; --white: #27040c; --border-color: #5c1422; --card-bg: rgba(39, 4, 12, 0.85); }
+        .theme-palembang { --primary: #d4af37; --primary-dark: #aa8513; --bg-color: #2a080c; --text-dark: #fcf6e8; --text-light: #e0d0b0; --white: #1f0407; --border-color: #4a0f16; --card-bg: rgba(31, 4, 7, 0.9); }
+        .theme-jawa-royal { --primary: #b8860b; --primary-dark: #8b6508; --bg-color: #1a1612; --text-dark: #f5eedc; --text-light: #c5b8a0; --white: #28221c; --border-color: #3d342a; --card-bg: rgba(40, 34, 28, 0.9); }
+        .theme-minang { --primary: #e6b800; --primary-dark: #b38f00; --bg-color: #4a0000; --text-dark: #fff5e6; --text-light: #eccd99; --white: #330000; --border-color: #660000; --card-bg: rgba(51, 0, 0, 0.9); }
+        .theme-chinese-radiance { --primary: #ffd700; --primary-dark: #ccac00; --bg-color: #7a0010; --text-dark: #fff0f5; --text-light: #f5b0bb; --white: #52000b; --border-color: #a30016; --card-bg: rgba(82, 0, 11, 0.9); }
+        .theme-floral { --primary: #556b2f; --primary-dark: #3b4b20; --bg-color: #f4f6f0; --text-dark: #2d381c; --text-light: #5d6d48; --white: #ffffff; --border-color: #d1dbc2; --card-bg: rgba(255, 255, 255, 0.95); }
+        .theme-boho { --primary: #c86d51; --primary-dark: #a14e35; --bg-color: #fbf5f1; --text-dark: #4a2c22; --text-light: #835c50; --white: #ffffff; --border-color: #ebd3c8; --card-bg: rgba(255, 255, 255, 0.95); }
+        .theme-midnight { --primary: #e0a96d; --primary-dark: #bc8041; --bg-color: #0c1017; --text-dark: #f0f4f8; --text-light: #94a3b8; --white: #161f2e; --border-color: #233148; --card-bg: rgba(22, 31, 46, 0.85); }
+        .theme-minimalist { --primary: #111111; --primary-dark: #333333; --bg-color: #ffffff; --text-dark: #111111; --text-light: #666666; --white: #f8f8f8; --border-color: #e5e5e5; --card-bg: #ffffff; }
+        .theme-emerald { --primary: #127a53; --primary-dark: #0a4f35; --bg-color: #f2f9f5; --text-dark: #073021; --text-light: #3d6e5a; --white: #ffffff; --border-color: #c1e5d5; --card-bg: rgba(255, 255, 255, 0.95); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Lato', sans-serif; overflow-x: hidden; background: #fff; }
-        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
-        .cursive { font-family: 'Great Vibes', cursive; color: var(--primary); }
+        body { font-family: var(--font-sans); overflow-x: hidden; background: #f8fafc; color: var(--text-dark); }
+        h1, h2, h3 { font-family: var(--font-serif); }
+        .cursive { font-family: var(--font-cursive); color: var(--primary); }
+        .cinzel { font-family: var(--font-heading); letter-spacing: 2px; }
 
+        /* OVERLAY & TOASTS */
         .modal-overlay { z-index: 1000; }
-        #toast-container { z-index: 2000; }
-        #loading-overlay { z-index: 9999; }
+        #toast-container { z-index: 3000; position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+        .toast { background: #ffffff; color: #333; padding: 14px 22px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 12px; transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 5px solid var(--primary); font-weight: 600; font-size: 0.95rem; }
+        .toast.show { transform: translateX(0); }
+        .toast.success { border-left-color: #10b981; } .toast.success i { color: #10b981; }
+        .toast.error { border-left-color: #ef4444; } .toast.error i { color: #ef4444; }
+        .toast.info { border-left-color: #3b82f6; } .toast.info i { color: #3b82f6; }
 
-        /* UI COMPONENTS */
-        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); display: flex; flex-direction: column; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: all 0.3s; }
+        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); display: flex; flex-direction: column; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: all 0.3s; z-index: 9999; color: #fff; }
         #loading-overlay.active { visibility: visible; opacity: 1; }
-        .spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem; }
+        .spinner { width: 55px; height: 55px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 0.9s linear infinite; margin-bottom: 1.2rem; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        #toast-container { position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; pointer-events:none; }
-        .toast { background: #ffffff; color: #333; padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; transform: translateX(120%); transition: transform 0.3s; border-left: 4px solid var(--primary); }
-        .toast.show { transform: translateX(0); }
-        .toast.success { border-left-color: #2ecc71; } .toast.success i { color: #2ecc71; }
-        .toast.error { border-left-color: #e74c3c; } .toast.error i { color: #e74c3c; }
+        /* BUTTONS & FORMS */
+        .btn { padding: 12px 24px; border-radius: 30px; border: none; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-family: var(--font-sans); display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); filter: brightness(1.1); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: #fff; }
 
-        .btn { padding: 12px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; font-family: 'Lato'; display: inline-block; text-align:center;}
-        .btn-primary { background: var(--primary); color: #fff; } .btn-primary:hover { background: var(--primary-dark); }
-        .btn-dark { background: var(--text-dark); color: #fff; } .btn-dark:hover { opacity: 0.9; }
-        
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
-        .form-control { width: 100%; padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Lato'; background: var(--white); color: var(--text-dark); }
-        .form-control:focus { outline: none; border-color: var(--primary); }
+        .form-group { margin-bottom: 1.2rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.9rem; color: var(--text-dark); }
+        .form-control { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border-color); border-radius: 12px; font-family: var(--font-sans); background: var(--white); color: var(--text-dark); transition: 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2); }
 
-        /* PORTAL */
-        .portal-bg { height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80') center/cover; }
-        .portal-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); padding: 3.5rem 3rem; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; max-width: 500px; width: 90%; border: 1px solid rgba(255,255,255,0.5); }
-        .portal-title { font-family: 'Great Vibes', cursive; font-size: 4rem; background: linear-gradient(45deg, #d4af37, #b5952f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-        .portal-btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 2.5rem; }
-        .portal-btn { display: flex; align-items: center; justify-content: center; gap: 15px; padding: 15px; border-radius: 10px; font-size: 1.1rem; text-decoration: none; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; font-weight: 600; }
-        .portal-guest { background: #ffffff; color: #d4af37; border-color: #d4af37; } .portal-guest:hover { background: #d4af37; color: #fff; transform: translateY(-3px); }
-        .portal-admin { background: #2c3e50; color: #fff; } .portal-admin:hover { background: #1a252f; transform: translateY(-3px); }
+        /* PORTAL & PUBLIC LINK SHARE PAGE */
+        .portal-bg { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80') center/cover fixed; padding: 20px; }
+        .portal-card { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); padding: 3.5rem 2.5rem; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.4); text-align: center; max-width: 520px; width: 100%; border: 1px solid rgba(255,255,255,0.6); }
+        .portal-title { font-family: var(--font-cursive); font-size: 4.5rem; color: #c5a059; margin-bottom: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
 
-        /* ADMIN - MODERN REDESIGN */
-        .admin-layout { display: flex; height: 100vh; background: #f1f5f9; overflow: hidden; font-family: 'Lato', sans-serif; }
-        .admin-sidebar { width: 280px; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); color: #cbd5e1; display: flex; flex-direction: column; box-shadow: 4px 0 25px rgba(0,0,0,0.1); z-index: 10; border-right: 1px solid rgba(255,255,255,0.05); }
-        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
-        .sidebar-menu { list-style: none; padding: 20px 10px; margin: 0; flex: 1; overflow-y: auto; }
-        .sidebar-menu li { padding: 15px 20px; cursor: pointer; margin-bottom: 5px; border-radius: 12px; transition: all 0.3s ease; display: flex; align-items: center; gap: 15px; font-weight: 600; font-size: 1.05rem; }
-        .sidebar-menu li:hover { background: rgba(255,255,255,0.08); color: #fff; transform: translateX(5px); }
-        .sidebar-menu li.active { background: #4f46e5; color: #ffffff; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); }
-        .admin-content { flex: 1; overflow-y: auto; padding: 40px; background: #f8fafc; }
+        /* MODERN ADMIN PANEL */
+        .admin-layout { display: flex; height: 100vh; background: #f1f5f9; overflow: hidden; }
+        .admin-sidebar { width: 280px; background: #0f172a; color: #94a3b8; display: flex; flex-direction: column; border-right: 1px solid #1e293b; z-index: 10; }
+        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #1e293b; }
+        .sidebar-menu { list-style: none; padding: 20px 12px; flex: 1; overflow-y: auto; }
+        .sidebar-menu li { padding: 14px 18px; cursor: pointer; margin-bottom: 6px; border-radius: 12px; transition: 0.3s; display: flex; align-items: center; gap: 14px; font-weight: 600; font-size: 0.95rem; }
+        .sidebar-menu li:hover { background: rgba(255,255,255,0.06); color: #f8fafc; }
+        .sidebar-menu li.active { background: #6366f1; color: #ffffff; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35); }
+        .admin-content { flex: 1; overflow-y: auto; padding: 35px; background: #f8fafc; }
         
-        .admin-card { background: #ffffff; border-radius: 20px; padding: 35px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); margin-bottom: 30px; border: 1px solid rgba(226, 232, 240, 0.8); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .admin-card:hover { box-shadow: 0 15px 50px rgba(0,0,0,0.08); transform: translateY(-3px); }
-        .admin-card-title { font-size: 1.4rem; font-family: 'Lato', sans-serif; font-weight: 700; margin-bottom: 25px; color: #0f172a; display: flex; align-items: center; gap: 12px; }
-        .admin-card-title i { color: #4f46e5; background: #e0e7ff; padding: 10px; border-radius: 10px; font-size: 1.1rem; }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .form-control { background: #f1f5f9; border: 2px solid transparent; padding: 12px 18px; transition: 0.3s; font-size: 1rem; }
-        .form-control:focus { background: #ffffff; border-color: #4f46e5; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
-        .form-group label { color: #475569; font-weight: 700; margin-bottom: 0.8rem; }
-        
-        .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .theme-option { background: #ffffff; border: 2px solid #e2e8f0; border-radius: 16px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; padding-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .theme-option:hover { border-color: #4f46e5; transform: translateY(-5px); box-shadow: 0 10px 25px rgba(79,70,229,0.15); }
-        .theme-option.active { border-color: #4f46e5; background: #f5f3ff; }
-        .theme-color-preview { width: 100%; height: 90px; margin-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .theme-option.active::after { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 10px; right: 10px; color: #ffffff; font-size: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .admin-card { background: #ffffff; border-radius: 20px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 25px; border: 1px solid #e2e8f0; }
+        .admin-card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; color: #0f172a; display: flex; align-items: center; gap: 10px; }
+        .admin-card-title i { color: #6366f1; background: #eef2ff; padding: 10px; border-radius: 10px; font-size: 1rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-        /* GUEST VIEW */
-        .invitation-wrapper { background-color: var(--bg-color); color: var(--text-dark); overflow-y: hidden; height: 100vh; position: relative; transition: background-color 0.5s, color 0.5s; }
-        .invitation-wrapper.open { overflow-y: auto; }
-        .cover-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #ffffff; z-index: 50; transition: transform 1s ease-in-out, opacity 1s ease-in-out; }
-        .guest-name-box { margin: 2rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); border-radius: 10px; border: 1px solid rgba(255,255,255,0.3); }
-        .inv-section { padding: 4rem 1.5rem; text-align: center; }
-        .bg-white-dynamic { background: var(--white); transition: background 0.5s; }
-        .couple-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 900px; margin: 0 auto; }
-        .person { flex: 1; min-width: 250px; }
-        .person img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid var(--white); box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
-        .event-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 900px; margin: 0 auto; }
-        .e-card { background: var(--white); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 2.5rem; flex: 1; min-width: 280px; border-top: 5px solid var(--primary); transition: 0.5s; }
-        
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; cursor: pointer; }
-        .theme-gold .gallery-grid img { border-radius: 10px; transition: 0.4s; } .theme-gold .gallery-grid img:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(212,175,55,0.3); }
-        .theme-rustic .gallery-grid img { border-radius: 30px 10px 30px 10px; transition: 0.4s; } .theme-rustic .gallery-grid img:hover { transform: rotate(-2deg) scale(1.03); border-radius: 10px 30px 10px 30px; box-shadow: 0 10px 20px rgba(107,142,35,0.3); }
-        .theme-midnight .gallery-grid img { border-radius: 8px; border: 2px solid transparent; transition: 0.4s; } .theme-midnight .gallery-grid img:hover { border-color: var(--primary); box-shadow: 0 0 20px var(--primary); transform: translateY(-5px); }
-        .theme-rose .gallery-grid img { border-radius: 100px 100px 10px 10px; transition: 0.4s; } .theme-rose .gallery-grid img:hover { transform: translateY(-10px); box-shadow: 0 15px 25px rgba(183,110,121,0.4); }
-        .theme-vintage .gallery-grid img { padding: 10px 10px 40px 10px; background: #fff; border: 1px solid #ccc; filter: sepia(0.5); transition: 0.4s; } .theme-vintage .gallery-grid img:hover { transform: rotate(3deg) scale(1.05); filter: sepia(0); }
-        .theme-sapphire .gallery-grid img { border: 4px solid var(--primary); transition: 0.3s; } .theme-sapphire .gallery-grid img:hover { border-width: 8px; filter: contrast(1.2); }
-        .theme-bohemian .gallery-grid { grid-auto-rows: 200px; } .theme-bohemian .gallery-grid img { height: 100%; border-radius: 15px; filter: brightness(0.9) sepia(0.3); transition: 0.5s; } .theme-bohemian .gallery-grid img:hover { filter: brightness(1.1) sepia(0); transform: scale(1.02); }
-        .theme-minimalist .gallery-grid img { filter: grayscale(100%); transition: 0.6s; } .theme-minimalist .gallery-grid img:hover { filter: grayscale(0%); transform: scale(1.03); }
-        .theme-velvet .gallery-grid img { border: 4px double var(--primary); padding: 5px; background: var(--bg-color); transition: 0.4s; } .theme-velvet .gallery-grid img:hover { background: var(--primary); transform: scale(1.05); }
-        .theme-emerald .gallery-grid img { border-radius: 50% 0 50% 0; transition: 0.5s; } .theme-emerald .gallery-grid img:hover { border-radius: 0 50% 0 50%; transform: scale(1.05); box-shadow: 0 10px 20px rgba(80,200,120,0.4); }
+        /* THEME SELECTION CARDS ALA VIDING */
+        .viding-theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+        .viding-theme-card { background: #fff; border: 2px solid #e2e8f0; border-radius: 16px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; }
+        .viding-theme-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: #6366f1; }
+        .viding-theme-card.active { border-color: #6366f1; ring: 3px rgba(99, 102, 241, 0.3); }
+        .viding-theme-card.active::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 10px; right: 10px; background: #6366f1; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; z-index: 2; }
+        .viding-theme-preview { height: 110px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-cursive); font-size: 2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.4); }
 
-        .audio-btn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary); color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; opacity:0; pointer-events:none; transition: 0.5s; }
-        .audio-btn.visible { opacity:1; pointer-events:auto; }
-        .back-portal-btn { position: fixed; top: 20px; left: 20px; z-index: 999; background: rgba(0,0,0,0.6); color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; backdrop-filter: blur(5px); }
+        /* INVITATION WRAPPER & ANIMATED ENVELOPE (VIDING STYLE) */
+        .invitation-wrapper { background-color: var(--bg-color); color: var(--text-dark); min-height: 100vh; position: relative; transition: all 0.5s ease; }
+        .cover-envelope { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--white); z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease; }
+        .cover-envelope.open { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+        .wax-seal { width: 90px; height: 90px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 2.2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.25); margin: 2rem auto; border: 3px solid rgba(255,255,255,0.4); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* FLOATING MENU BAR (BOTTOM) */
+        .floating-nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(15px); padding: 8px 18px; border-radius: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: flex; gap: 18px; z-index: 90; border: 1px solid rgba(255,255,255,0.5); opacity: 0; pointer-events: none; transition: 0.5s; }
+        .floating-nav.active { opacity: 1; pointer-events: auto; }
+        .floating-nav a { color: var(--text-light); text-decoration: none; font-size: 1.2rem; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .floating-nav a:hover, .floating-nav a.active { background: var(--primary); color: #ffffff; }
+
+        /* COUNTDOWN TIMER */
+        .countdown-grid { display: flex; justify-content: center; gap: 15px; margin: 2rem 0; flex-wrap: wrap; }
+        .countdown-box { background: var(--white); padding: 15px 20px; border-radius: 14px; min-width: 80px; box-shadow: var(--shadow); border: 1px solid var(--border-color); text-align: center; }
+        .countdown-num { font-size: 1.8rem; font-weight: 700; color: var(--primary); font-family: var(--font-heading); }
+        .countdown-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-top: 4px; }
+
+        /* SECTIONS */
+        .inv-section { padding: 5rem 1.5rem; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .couple-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; margin-top: 3rem; }
+        .couple-card { flex: 1; min-width: 260px; background: var(--card-bg); padding: 2.5rem 1.5rem; border-radius: var(--radius); border: 1px solid var(--border-color); box-shadow: var(--shadow); }
+        .couple-avatar { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); margin: 0 auto 1.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 2rem; }
+        .gallery-grid img { width: 100%; height: 260px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: 0.4s; border: 1px solid var(--border-color); }
+        .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+        /* LIGHTBOX MODAL */
+        #lightbox-modal { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index: 4000; display: none; align-items: center; justify-content: center; padding: 20px; }
+        #lightbox-img { max-width: 90%; max-height: 85vh; border-radius: 12px; }
+
+        .audio-btn { position: fixed; bottom: 25px; right: 25px; width: 52px; height: 52px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.25); z-index: 95; opacity: 0; pointer-events: none; transition: 0.4s; font-size: 1.2rem; }
+        .audio-btn.visible { opacity: 1; pointer-events: auto; }
 
         @media (max-width: 768px) {
             .grid-2 { grid-template-columns: 1fr; }
             .admin-layout { flex-direction: column; }
-            .admin-sidebar { width: 100%; flex-direction: row; overflow-x: auto; height: 60px; }
+            .admin-sidebar { width: 100%; height:auto; }
             .sidebar-header { display: none; }
-            .sidebar-menu { display: flex; flex-direction: row; }
-            .sidebar-menu li { padding: 10px 15px; white-space: nowrap; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.05); }
+            .sidebar-menu { display: flex; overflow-x: auto; padding: 10px; }
+            .sidebar-menu li { white-space: nowrap; margin-bottom:0; }
         }
     </style>
 </head>
@@ -141,38 +152,72 @@
 
     <div id="app-root"></div>
     <div id="toast-container"></div>
-    <div id="loading-overlay">
-        <div class="spinner"></div>
-        <h3 class="serif" style="color: var(--text-dark);" id="load-msg">Memproses...</h3>
+    
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Full View">
     </div>
 
-    <!-- TEMPLATE: PORTAL -->
+    <!-- LOADING OVERLAY -->
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <h3 class="cinzel" style="font-size: 1.2rem; letter-spacing: 3px;" id="load-msg">MEMPROSES...</h3>
+    </div>
+
+    <!-- TEMPLATE: PORTAL UTAMA -->
     <template id="tpl-portal">
         <div class="portal-bg">
             <div class="portal-card">
-                <h1 class="portal-title">Sistem Undangan</h1>
-                <p style="color: #555; margin-bottom: 20px; font-size: 1.1rem;">Pilih peran Anda untuk masuk.</p>
-                <div class="portal-btn-group">
-                    <button class="portal-btn portal-guest" onclick="loadGuestView()"><i class="fas fa-envelope-open-text"></i> Lihat Undangan (Tamu)</button>
-                    <button class="portal-btn portal-admin" onclick="loadLoginView()"><i class="fas fa-user-shield"></i> Masuk Panel Admin</button>
+                <h1 class="portal-title">The Wedding</h1>
+                <p style="color: #64748b; font-size: 1rem; margin-bottom: 2rem;">Sistem Undangan Digital Viding Edition</p>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <button class="btn btn-primary" onclick="loadGuestView()"><i class="fas fa-envelope-open-text"></i> Lihat Undangan (Sebagai Tamu)</button>
+                    <button class="btn btn-outline" style="border-color: #0f172a; color: #0f172a;" onclick="loadLoginView()"><i class="fas fa-user-shield"></i> Masuk Panel Admin</button>
+                    <button class="btn" style="background: #f1f5f9; color: #475569;" onclick="loadPublicShareView()"><i class="fas fa-share-alt"></i> Generator Link Tamu (Publik)</button>
                 </div>
             </div>
         </div>
     </template>
 
-    <!-- TEMPLATE: ADMIN LOGIN -->
+    <!-- TEMPLATE: PUBLIC SHARE PAGE (Bisa diakses tanpa login admin) -->
+    <template id="tpl-public-share">
+        <div class="portal-bg">
+            <div class="portal-card" style="max-width: 600px; text-align: left;">
+                <button class="btn" style="background: #f1f5f9; color: #333; margin-bottom: 1.5rem;" onclick="initApp()"><i class="fas fa-arrow-left"></i> Kembali</button>
+                <h2 class="serif" style="color: #0f172a; margin-bottom: 0.5rem;">Sebar Undangan Pernikahan</h2>
+                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Ketik nama tamu di bawah ini untuk membuat link undangan khusus.</p>
+                <div class="form-group">
+                    <label>Nama Tamu Undangan</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="pub-guest-name" class="form-control" placeholder="Contoh: Keluarga Bpk. Ahmad">
+                        <button class="btn btn-primary" onclick="generatePublicLink()"><i class="fas fa-magic"></i> Buat</button>
+                    </div>
+                </div>
+                <div id="pub-result-box" style="display: none; margin-top: 1.5rem; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #cbd5e1;">
+                    <p style="font-size: 0.85rem; color: #475569; font-weight: 700; margin-bottom: 6px;">LINK UNDANGAN TAMU:</p>
+                    <code id="pub-link-url" style="display: block; word-break: break-all; background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 0.9rem; color: #2563eb;"></code>
+                    <div style="display: flex; gap: 10px; margin-top: 12px;">
+                        <button class="btn btn-primary" style="flex: 1;" onclick="copyPublicLink()"><i class="fas fa-copy"></i> Salin Link</button>
+                        <button class="btn btn-outline" style="flex: 1;" onclick="previewPublicLink()"><i class="fas fa-eye"></i> Buka Undangan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- TEMPLATE: LOGIN ADMIN -->
     <template id="tpl-login">
-        <div style="height: 100vh; display: flex; justify-content: center; align-items: center; background: #1e293b;">
-            <button class="back-portal-btn" onclick="initApp()"><i class="fas fa-arrow-left"></i> Kembali</button>
-            <div style="background: #fff; padding: 2.5rem; border-radius: 15px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <i class="fas fa-lock" style="font-size: 3rem; color: #d4af37; margin-bottom: 1rem;"></i>
-                    <h2 class="serif" style="color: #333;">Admin Panel</h2>
+        <div class="portal-bg">
+            <div class="portal-card" style="max-width: 420px;">
+                <button class="btn" style="background: #f1f5f9; color: #333; margin-bottom: 1.5rem; float: left;" onclick="initApp()"><i class="fas fa-arrow-left"></i></button>
+                <div style="clear: both; margin-bottom: 1.5rem;">
+                    <i class="fas fa-lock" style="font-size: 3rem; color: #c5a059; margin-bottom: 0.5rem;"></i>
+                    <h2 class="serif">Admin Panel</h2>
                 </div>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group"><label>Username</label><input type="text" id="login-user" class="form-control" required></div>
                     <div class="form-group"><label>Password</label><input type="password" id="login-pass" class="form-control" required></div>
-                    <button type="submit" class="btn" style="width: 100%; background:#d4af37; color:#fff;">Masuk Dashboard</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Masuk Dashboard</button>
                 </form>
             </div>
         </div>
@@ -181,340 +226,284 @@
     <!-- TEMPLATE: ADMIN DASHBOARD -->
     <template id="tpl-admin-dashboard">
         <div class="admin-layout">
-            <button class="back-portal-btn" style="bottom: 20px; top: auto;" onclick="initApp()"><i class="fas fa-sign-out-alt"></i> Keluar</button>
             <div class="admin-sidebar">
-                <div class="sidebar-header"><h2 class="cursive" style="color:#d4af37; font-size: 2rem;">Panel Admin</h2></div>
+                <div class="sidebar-header"><h2 class="cursive" style="color:#c5a059; font-size: 2.2rem;">Panel Admin</h2></div>
                 <ul class="sidebar-menu">
-                    <li class="active" onclick="switchTab('tab-tema', this)"><i class="fas fa-paint-brush"></i> Tema & Desain</li>
-                    <li onclick="switchTab('tab-mempelai', this)"><i class="fas fa-user-friends"></i> Data Mempelai</li>
+                    <li class="active" onclick="switchTab('tab-tema', this)"><i class="fas fa-palette"></i> Pilih Tema Viding</li>
+                    <li onclick="switchTab('tab-mempelai', this)"><i class="fas fa-heart"></i> Data Mempelai</li>
                     <li onclick="switchTab('tab-acara', this)"><i class="fas fa-calendar-alt"></i> Data Acara</li>
-                    <li onclick="switchTab('tab-media', this)"><i class="fas fa-images"></i> Media & Musik</li>
-                    <li onclick="switchTab('tab-keuangan', this)"><i class="fas fa-wallet"></i> QRIS & Rekening</li>
+                    <li onclick="switchTab('tab-media', this)"><i class="fas fa-photo-video"></i> Media & Playlist</li>
+                    <li onclick="switchTab('tab-keuangan', this)"><i class="fas fa-qrcode"></i> QRIS & Rekening</li>
                     <li onclick="switchTab('tab-sebar', this)"><i class="fas fa-share-alt"></i> Sebar Undangan</li>
+                    <li onclick="initApp()" style="margin-top: auto; color: #ef4444;"><i class="fas fa-sign-out-alt"></i> Keluar</li>
                 </ul>
             </div>
             <div class="admin-content">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 class="serif" style="color: #333;">Pengaturan Undangan</h2>
-                    <button class="btn" style="background:#2c3e50; color:#fff;" onclick="saveAllSettings()"><i class="fas fa-save"></i> Simpan ke Database</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h2 class="serif" style="color: #0f172a;">Pengaturan Undangan</h2>
+                    <button class="btn btn-primary" onclick="saveAllSettings()"><i class="fas fa-save"></i> Simpan ke Database</button>
                 </div>
-                <!-- TEMA -->
+
+                <!-- TAB TEMA -->
                 <div id="tab-tema" class="admin-tab">
                     <div class="admin-card">
-                        <h3 class="admin-card-title">Pilih Tema Layout</h3>
-                        <div class="theme-grid" id="admin-theme-grid">
-                            <!-- Populated in JS -->
-                        </div>
+                        <h3 class="admin-card-title"><i class="fas fa-magic"></i> 10 Tema Viding Style</h3>
+                        <div class="viding-theme-grid" id="viding-theme-container"></div>
                     </div>
                 </div>
-                <!-- MEMPELAI -->
+
+                <!-- TAB MEMPELAI -->
                 <div id="tab-mempelai" class="admin-tab" style="display: none;">
-                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-male"></i> Mempelai Pria</h3><div class="grid-2"><div class="form-group"><label>Nama Lengkap</label><input type="text" id="in-groom-name" class="form-control"></div><div class="form-group"><label>Nama Panggilan</label><input type="text" id="in-groom-nickname" class="form-control" placeholder="Contoh: Romeo"></div><div class="form-group" style="grid-column: span 2;"><label>Nama Orang Tua</label><input type="text" id="in-groom-parents" class="form-control" placeholder="Putra dari Bapak X & Ibu Y"></div></div></div>
-                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-female"></i> Mempelai Wanita</h3><div class="grid-2"><div class="form-group"><label>Nama Lengkap</label><input type="text" id="in-bride-name" class="form-control"></div><div class="form-group"><label>Nama Panggilan</label><input type="text" id="in-bride-nickname" class="form-control" placeholder="Contoh: Juliet"></div><div class="form-group" style="grid-column: span 2;"><label>Nama Orang Tua</label><input type="text" id="in-bride-parents" class="form-control" placeholder="Putri dari Bapak A & Ibu B"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-male"></i> Mempelai Pria</h3><div class="grid-2"><div class="form-group"><label>Nama Lengkap</label><input type="text" id="in-groom-name" class="form-control"></div><div class="form-group"><label>Nama Panggilan</label><input type="text" id="in-groom-nickname" class="form-control"></div><div class="form-group" style="grid-column: span 2;"><label>Nama Orang Tua</label><input type="text" id="in-groom-parents" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-female"></i> Mempelai Wanita</h3><div class="grid-2"><div class="form-group"><label>Nama Lengkap</label><input type="text" id="in-bride-name" class="form-control"></div><div class="form-group"><label>Nama Panggilan</label><input type="text" id="in-bride-nickname" class="form-control"></div><div class="form-group" style="grid-column: span 2;"><label>Nama Orang Tua</label><input type="text" id="in-bride-parents" class="form-control"></div></div></div>
                 </div>
-                <!-- ACARA -->
+
+                <!-- TAB ACARA -->
                 <div id="tab-acara" class="admin-tab" style="display: none;">
-                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-ring"></i> Akad Nikah</h3><div class="grid-2"><div class="form-group"><label>Tanggal</label><input type="date" id="in-akad-date" class="form-control"></div><div class="form-group"><label>Waktu</label><input type="time" id="in-akad-time" class="form-control"></div></div></div>
-                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-glass-cheers"></i> Resepsi</h3><div class="grid-2"><div class="form-group"><label>Tanggal</label><input type="date" id="in-resepsi-date" class="form-control"></div><div class="form-group"><label>Waktu</label><input type="time" id="in-resepsi-time" class="form-control"></div></div></div>
-                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-map-marker-alt"></i> Lokasi</h3><div class="form-group"><label>Nama Gedung / Tempat</label><input type="text" id="in-location-name" class="form-control" placeholder="Contoh: Gedung Serbaguna"></div><div class="form-group"><label>Link Google Maps</label><input type="url" id="in-location-link" class="form-control" placeholder="https://maps.app.goo.gl/..."></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-ring"></i> Akad Nikah</h3><div class="grid-2"><div class="form-group"><label>Tanggal Akad</label><input type="date" id="in-akad-date" class="form-control"></div><div class="form-group"><label>Waktu Akad</label><input type="time" id="in-akad-time" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-glass-cheers"></i> Resepsi Pernikahan</h3><div class="grid-2"><div class="form-group"><label>Tanggal Resepsi</label><input type="date" id="in-resepsi-date" class="form-control"></div><div class="form-group"><label>Waktu Resepsi</label><input type="time" id="in-resepsi-time" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-map-marked-alt"></i> Lokasi Acara</h3><div class="form-group"><label>Nama Gedung / Tempat</label><input type="text" id="in-location-name" class="form-control"></div><div class="form-group"><label>Link Google Maps</label><input type="url" id="in-location-link" class="form-control"></div></div>
                 </div>
-                <!-- MEDIA -->
+
+                <!-- TAB MEDIA -->
                 <div id="tab-media" class="admin-tab" style="display: none;">
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-images"></i> Upload Foto Galeri</h3><div class="form-group"><input type="file" id="in-gallery-upload" class="form-control" accept="image/*"></div><button class="btn btn-primary" onclick="uploadSingleMedia('gallery')">Unggah Foto Galeri</button></div>
                     <div class="admin-card">
-                        <h3 class="admin-card-title"><i class="fas fa-camera"></i> Galeri Foto (Pilih 1 untuk tambah)</h3>
-                        <div class="form-group"><label>Upload Foto (Otomatis Simpan ke Drive)</label><input type="file" id="in-gallery-upload" class="form-control" accept="image/*"></div>
-                        <button class="btn btn-primary" onclick="uploadSingleMedia('gallery')">Upload Foto ke Galeri</button>
-                    </div>
-                    <div class="admin-card">
-                        <h3 class="admin-card-title"><i class="fas fa-music"></i> Musik Latar (BGM)</h3>
+                        <h3 class="admin-card-title"><i class="fas fa-music"></i> Audio Background (Lagu Pernikahan)</h3>
                         <div class="form-group">
-                            <label>Pilih Lagu Pernikahan</label>
-                            <select id="in-audio-select" class="form-control" onchange="handleAudioSelection()">
-                                <option value="">-- Tanpa Musik / Default --</option>
-                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3">Beautiful In White (Piano Cover)</option>
-                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3">A Thousand Years (Instrumental Barat)</option>
-                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3">Janji Suci (Pop Indonesia)</option>
-                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3">Sempurna (Acoustic Romantis)</option>
-                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3">Canon In D - Pachelbel (Klasik)</option>
-                                <option value="custom">-- Upload Lagu Sendiri (.mp3) --</option>
+                            <label>Pilih Lagu Pernikahan Khas</label>
+                            <select id="in-audio-select" class="form-control" onchange="previewSelectedMusic()">
+                                <option value="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-115311.mp3">Beautiful Wedding Piano (Romantic Instrumental)</option>
+                                <option value="https://cdn.pixabay.com/download/audio/2022/10/14/audio_99391e6b3e.mp3?filename=wedding-march-acoustic-1234.mp3">Acoustic Wedding Love Story</option>
+                                <option value="https://cdn.pixabay.com/download/audio/2021/08/09/audio_8816f1c42f.mp3?filename=sweet-love-romantic-acoustic-11204.mp3">Sweet Love Romantic Guitar</option>
                             </select>
                         </div>
-                        
-                        <audio id="audio-preview" controls style="width: 100%; margin-bottom: 15px; display: none; border-radius: 8px;"></audio>
-                        
-                        <div id="custom-audio-group" style="display: none; padding: 15px; background: #f8fafc; border-radius: 10px; border: 1px dashed #cbd5e1;">
-                            <div class="form-group"><label>Ganti .mp3 (Manual)</label><input type="file" id="in-audio-upload" class="form-control" accept="audio/*"></div>
-                            <button class="btn btn-primary" onclick="uploadSingleMedia('audio')">Upload Musik Manual</button>
-                        </div>
+                        <audio id="admin-audio-player" controls style="width: 100%; margin-top: 10px;"></audio>
                     </div>
                 </div>
-                <!-- KEUANGAN -->
+
+                <!-- TAB KEUANGAN -->
                 <div id="tab-keuangan" class="admin-tab" style="display: none;">
-                    <div class="admin-card">
-                        <h3 class="admin-card-title">QRIS Baru</h3>
-                        <div class="form-group"><label>Gambar QRIS</label><input type="file" id="in-qris-upload" class="form-control" accept="image/*"></div>
-                        <button class="btn btn-primary" onclick="uploadSingleMedia('qris')">Upload QRIS</button>
-                    </div>
-                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-money-check-alt"></i> Rekening</h3><div class="grid-2"><div class="form-group"><label>Bank</label><input type="text" id="in-bank-name" class="form-control" placeholder="Contoh: BCA"></div><div class="form-group"><label>No Rek</label><input type="text" id="in-bank-account" class="form-control"></div><div class="form-group" style="grid-column: span 2;"><label>Atas Nama</label><input type="text" id="in-bank-owner" class="form-control"></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-qrcode"></i> QRIS Amplop Digital</h3><div class="form-group"><input type="file" id="in-qris-upload" class="form-control" accept="image/*"></div><button class="btn btn-primary" onclick="uploadSingleMedia('qris')">Unggah Foto QRIS</button></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-university"></i> Rekening Bank</h3><div class="grid-2"><div class="form-group"><label>Nama Bank</label><input type="text" id="in-bank-name" class="form-control" placeholder="BCA / Mandiri"></div><div class="form-group"><label>Nomor Rekening</label><input type="text" id="in-bank-account" class="form-control"></div><div class="form-group" style="grid-column: span 2;"><label>Atas Nama</label><input type="text" id="in-bank-owner" class="form-control"></div></div></div>
                 </div>
-                <!-- SEBAR -->
+
+                <!-- TAB SEBAR -->
                 <div id="tab-sebar" class="admin-tab" style="display: none;">
-                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-link"></i> Link Generator</h3><div style="background: #e8f4f8; padding: 25px; border-radius: 12px; border: 1px dashed #3498db;"><div class="form-group"><label>Nama Tamu</label><div style="display: flex; gap: 10px;"><input type="text" id="generator-name" class="form-control" placeholder="Ketik nama tamu di sini..."><button class="btn" style="background:#3498db; color:#fff;" onclick="generateLink()"><i class="fas fa-magic"></i> Buat Link</button></div></div><div id="generated-result" style="display: none; margin-top: 20px;"><p style="font-size: 0.9rem; margin-bottom: 5px; color: #555;">Link Undangan Anda:</p><code id="result-link" style="display:block; background:#fff; padding:15px; border-radius: 8px; word-break:break-all; border: 1px solid #ccc;"></code><div style="display: flex; gap: 10px; margin-top: 15px;"><button class="btn" style="background:#2c3e50; color:#fff; flex: 1;" onclick="copyLink()"><i class="fas fa-copy"></i> Salin Link</button><button class="btn" style="background:#d4af37; color:#fff; flex: 1;" onclick="previewLink()"><i class="fas fa-eye"></i> Preview Undangan</button></div></div></div></div>
+                    <div class="admin-card"><h3 class="admin-card-title"><i class="fas fa-link"></i> Public Share Generator</h3><p style="color:#64748b; margin-bottom: 15px;">Bagikan link di bawah ke panitia untuk membantu membuatkan link tamu tanpa login admin:</p><code id="pub-share-link" style="display:block; background:#f1f5f9; padding:12px; border-radius:8px; word-break:break-all;"></code><button class="btn btn-primary" style="margin-top: 10px;" onclick="copyPublicShareLink()"><i class="fas fa-copy"></i> Salin Link Generator Publik</button></div>
                 </div>
             </div>
         </div>
     </template>
 
-    <!-- TEMPLATE: GUEST INVITATION -->
+    <!-- TEMPLATE: UNDANGAN TAMU (VIDING STYLE) -->
     <template id="tpl-invitation">
-        <button class="back-portal-btn" id="btn-back-portal" onclick="stopAudio(); initApp()"><i class="fas fa-home"></i> Beranda</button>
         <audio id="inv-bgm" loop></audio>
         <div class="audio-btn" id="audio-toggle" onclick="toggleAudio()"><i class="fas fa-compact-disc spin" id="audio-icon"></i></div>
 
-        <div class="invitation-wrapper theme-gold" id="inv-wrapper">
-            <div class="cover-screen" id="cover-screen">
-                <h1 class="cursive" style="font-size: 4rem; margin-bottom: 0.5rem;" id="out-cover-title">Title</h1>
-                <p style="letter-spacing: 2px; margin-bottom: 2rem;" id="out-cover-date">DATE</p>
-                <div class="guest-name-box">
-                    <p>Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-                    <h2 class="serif" id="out-guest-name">Tamu Undangan</h2>
-                    <p style="font-size: 0.9rem; font-style: italic;">Mohon maaf apabila ada kesalahan penulisan nama</p>
-                </div>
-                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px; border-radius: 30px;" onclick="openInvitation()"><i class="fas fa-envelope-open-text"></i> Buka Undangan</button>
+        <!-- FLOATING BOTTOM NAV -->
+        <div class="floating-nav" id="floating-nav">
+            <a href="#section-home" class="active"><i class="fas fa-home"></i></a>
+            <a href="#section-mempelai"><i class="fas fa-heart"></i></a>
+            <a href="#section-acara"><i class="fas fa-calendar-alt"></i></a>
+            <a href="#section-galeri"><i class="fas fa-images"></i></a>
+            <a href="#section-hadiah"><i class="fas fa-gift"></i></a>
+        </div>
+
+        <div class="invitation-wrapper" id="inv-wrapper">
+            <!-- ENVELOPE OPENING ANIMATION -->
+            <div class="cover-envelope" id="cover-envelope">
+                <h3 class="cinzel" style="color: var(--primary); letter-spacing: 4px; margin-bottom: 0.5rem;">THE WEDDING OF</h3>
+                <h1 class="cursive" style="font-size: 4rem; color: var(--primary);" id="out-cover-title">Romeo & Juliet</h1>
+                <div class="wax-seal"><i class="fas fa-heart"></i></div>
+                <p style="color: var(--text-light); font-size: 0.95rem;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <h2 class="serif" style="font-size: 2rem; margin: 10px 0; color: var(--text-dark);" id="out-guest-name">Nama Tamu</h2>
+                <button class="btn btn-primary" style="margin-top: 1.5rem; padding: 14px 32px;" onclick="openEnvelope()"><i class="fas fa-envelope-open"></i> Buka Undangan</button>
             </div>
 
-            <section class="inv-section bg-white-dynamic" style="padding-top: 5rem;">
-                <h2 class="serif" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-dark);">Sang Mempelai</h2>
-                <div class="couple-wrapper">
-                    <div class="person">
-                        <img src="" id="out-groom-img" alt="Groom">
-                        <h3 class="cursive" style="font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--primary);" id="out-groom-nickname">Pria</h3>
-                        <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-dark);" id="out-groom-name">Nama Lengkap Pria</p>
-                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;" id="out-groom-parents">Orang Tua</p>
+            <!-- HERO HOME SECTION -->
+            <section id="section-home" class="inv-section" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <p class="cinzel" style="letter-spacing: 4px; color: var(--primary);">VALUABLE MOMENT</p>
+                <h1 class="cursive" style="font-size: 5rem; margin: 10px 0;" id="out-hero-title">Romeo & Juliet</h1>
+                <p class="serif" style="font-size: 1.2rem; color: var(--text-light);" id="out-hero-date">Sabtu, 24 Desember 2026</p>
+
+                <!-- COUNTDOWN TIMER -->
+                <div class="countdown-grid">
+                    <div class="countdown-box"><div class="countdown-num" id="cd-days">00</div><div class="countdown-label">Hari</div></div>
+                    <div class="countdown-box"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-label">Jam</div></div>
+                    <div class="countdown-box"><div class="countdown-num" id="cd-minutes">00</div><div class="countdown-label">Menit</div></div>
+                    <div class="countdown-box"><div class="countdown-num" id="cd-seconds">00</div><div class="countdown-label">Detik</div></div>
+                </div>
+            </section>
+
+            <!-- MEMPELAI SECTION -->
+            <section id="section-mempelai" class="inv-section">
+                <h2 class="cursive" style="font-size: 3.5rem;">Mempelai Indah</h2>
+                <p style="color: var(--text-light); max-width: 600px; margin: 0 auto 2rem;">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
+                <div class="couple-container">
+                    <div class="couple-card">
+                        <img src="" id="out-groom-img" class="couple-avatar" alt="Groom">
+                        <h3 class="cursive" style="font-size: 3rem;" id="out-groom-nick">Pria</h3>
+                        <h4 class="serif" style="font-size: 1.3rem; margin-bottom: 0.5rem;" id="out-groom-full">Nama Lengkap Pria</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem;" id="out-groom-parents">Orang Tua</p>
                     </div>
-                    <div class="cursive" style="font-size: 4rem; line-height: 1; display: flex; align-items: center; color: var(--primary);">&</div>
-                    <div class="person">
-                        <img src="" id="out-bride-img" alt="Bride">
-                        <h3 class="cursive" style="font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--primary);" id="out-bride-nickname">Wanita</h3>
-                        <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-dark);" id="out-bride-name">Nama Lengkap Wanita</p>
-                        <p style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5;" id="out-bride-parents">Orang Tua</p>
+                    <div class="cursive" style="font-size: 4rem; color: var(--primary);">&</div>
+                    <div class="couple-card">
+                        <img src="" id="out-bride-img" class="couple-avatar" alt="Bride">
+                        <h3 class="cursive" style="font-size: 3rem;" id="out-bride-nick">Wanita</h3>
+                        <h4 class="serif" style="font-size: 1.3rem; margin-bottom: 0.5rem;" id="out-bride-full">Nama Lengkap Wanita</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem;" id="out-bride-parents">Orang Tua</p>
                     </div>
                 </div>
             </section>
 
-            <section class="inv-section">
-                <h2 class="serif" style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-dark);">Rangkaian Acara</h2>
-                <div class="event-cards">
-                    <div class="e-card"><i class="fas fa-ring" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i><h3 class="serif" style="font-size: 1.5rem;">Akad Nikah</h3><p><strong id="out-akad-date">-</strong></p><p id="out-akad-time">-</p></div>
-                    <div class="e-card"><i class="fas fa-glass-cheers" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i><h3 class="serif" style="font-size: 1.5rem;">Resepsi</h3><p><strong id="out-resepsi-date">-</strong></p><p id="out-resepsi-time">-</p></div>
+            <!-- ACARA SECTION -->
+            <section id="section-acara" class="inv-section">
+                <h2 class="cursive" style="font-size: 3.5rem; margin-bottom: 2rem;">Rangkaian Acara</h2>
+                <div class="couple-container">
+                    <div class="couple-card">
+                        <i class="fas fa-ring" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                        <h3 class="serif" style="font-size: 1.6rem; margin-bottom: 0.5rem;">Akad Nikah</h3>
+                        <p style="font-weight: 700; color: var(--primary);" id="out-akad-date">-</p>
+                        <p style="color: var(--text-light); margin-bottom: 1rem;" id="out-akad-time">-</p>
+                    </div>
+                    <div class="couple-card">
+                        <i class="fas fa-glass-cheers" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                        <h3 class="serif" style="font-size: 1.6rem; margin-bottom: 0.5rem;">Resepsi Pernikahan</h3>
+                        <p style="font-weight: 700; color: var(--primary);" id="out-resepsi-date">-</p>
+                        <p style="color: var(--text-light); margin-bottom: 1rem;" id="out-resepsi-time">-</p>
+                    </div>
                 </div>
-                <div class="bg-white-dynamic" style="padding: 2rem; border-radius: 15px; max-width: 600px; margin: 2rem auto 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-                    <h3 class="serif" style="margin-bottom: 1rem; font-size: 1.5rem;">Lokasi Acara</h3>
+                <div class="couple-card" style="margin-top: 2rem; width: 100%;">
+                    <h3 class="serif" style="margin-bottom: 0.5rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> Lokasi Acara</h3>
                     <p style="margin-bottom: 1.5rem;" id="out-location-name">-</p>
-                    <a href="#" id="out-location-btn" onclick="showToast('info', 'Membuka Google Maps')" class="btn btn-primary" target="_blank" style="text-decoration:none;"><i class="fas fa-map-marker-alt"></i> Buka Google Maps</a>
+                    <a href="#" id="out-location-link" class="btn btn-primary" target="_blank"><i class="fas fa-directions"></i> Buka Petunjuk Map</a>
                 </div>
             </section>
 
-            <section class="inv-section bg-white-dynamic">
-                <h2 class="serif" style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-dark);">Galeri Momen</h2>
-                <div class="gallery-grid" id="out-gallery-container"></div>
+            <!-- GALERI SECTION -->
+            <section id="section-galeri" class="inv-section">
+                <h2 class="cursive" style="font-size: 3.5rem;">Galeri Prewedding</h2>
+                <div class="gallery-grid" id="out-gallery-grid"></div>
             </section>
 
-            <section class="inv-section">
-                <h2 class="serif" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-dark);">Amplop Digital</h2>
-                <div class="bg-white-dynamic" style="padding: 2.5rem; border-radius: 15px; max-width: 600px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-                    <div style="background:#fff; padding:15px; border-radius:10px; border:2px dashed #ccc; display:inline-block; margin-bottom:1.5rem;">
-                        <img id="out-qris-img" src="" alt="QRIS" style="max-width: 200px;">
-                        <p style="margin-top: 10px; font-weight:bold; color:#333;">SCAN QRIS</p>
+            <!-- HADIAH / AMPLOP SECTION -->
+            <section id="section-hadiah" class="inv-section">
+                <h2 class="cursive" style="font-size: 3.5rem;">Amplop Digital</h2>
+                <div class="couple-card" style="max-width: 550px; margin: 0 auto;">
+                    <img id="out-qris-img" src="" alt="QRIS" style="max-width: 200px; border-radius: 12px; margin-bottom: 1.5rem; border: 2px dashed var(--primary); padding: 10px;">
+                    <div style="background: rgba(0,0,0,0.03); padding: 15px; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <p style="font-size: 1.1rem; font-weight: 700;" id="out-bank-name">-</p>
+                        <p style="font-size: 1.3rem; letter-spacing: 2px; color: var(--primary); font-weight: 700;" id="out-bank-acc">-</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light);" id="out-bank-owner">-</p>
+                        <button class="btn btn-outline" style="margin-top: 10px; padding: 8px 18px; font-size: 0.85rem;" onclick="copyBankAcc()"><i class="fas fa-copy"></i> Salin No. Rekening</button>
                     </div>
-                    <div style="margin-bottom: 2rem; padding:15px; background:var(--bg-color); border-radius:10px;">
-                        <p style="margin-bottom:5px;"><strong id="out-bank-name">-</strong> - <span id="out-bank-account">-</span></p>
-                        <p>a.n <span id="out-bank-owner">-</span></p>
-                    </div>
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin-bottom: 2rem;">
-                    <h3 class="serif" style="margin-bottom: 1rem; text-align:left;">Konfirmasi Transfer</h3>
-                    <form onsubmit="guestSubmitUpload(event)" style="text-align: left;">
+
+                    <h4 class="serif" style="margin-bottom: 1rem; text-align: left;">Konfirmasi Transfer</h4>
+                    <form onsubmit="submitGuestTransfer(event)" style="text-align: left;">
                         <div class="form-group"><label>Nama Pengirim</label><input type="text" id="tf-sender" class="form-control" required></div>
-                        <div class="form-group"><label>Upload Bukti (JPG/PNG)</label><input type="file" id="tf-file" class="form-control" accept="image/*" required></div>
-                        <button type="submit" class="btn btn-dark" style="width: 100%;">Kirim Bukti Transfer</button>
+                        <div class="form-group"><label>Upload Struk / Bukti Transfer</label><input type="file" id="tf-file" class="form-control" accept="image/*" required></div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Bukti Transfer</button>
                     </form>
                 </div>
             </section>
 
-            <footer style="background-color: var(--primary); color: #fff; padding: 4rem 1rem; text-align: center;">
-                <h2 class="cursive" style="font-size: 3rem; margin-bottom: 1rem; color: #fff;" id="out-footer-title">Title</h2>
-                <p>Terima kasih atas doa restu Bapak/Ibu/Saudara/i</p>
+            <footer style="padding: 4rem 1rem; text-align: center; background: var(--white); border-top: 1px solid var(--border-color);">
+                <h2 class="cursive" style="font-size: 3.5rem; color: var(--primary);" id="out-footer-title">Romeo & Juliet</h2>
+                <p style="color: var(--text-light);">Terima kasih atas doa restu Anda.</p>
             </footer>
         </div>
     </template>
 
     <script>
-        /**
-         ============================================================
-         WAJIB DIUBAH!
-         Ganti URL di bawah dengan URL Web App Anda setelah deploy.
-         ============================================================
-        */
         const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxUam_J9n-f0-jaXxPW3BAXeXtklXetruYIpP8tcBNB_94jRFywHnLQtasC01JQbOOW/exec";
 
         let appData = {};
-        let guestNameTarget = "Tamu Spesial";
+        let guestTarget = "Tamu Spesial";
         let sessionToken = sessionStorage.getItem('adminToken') || null;
+        let countdownInterval;
         const root = document.getElementById('app-root');
 
+        const vidingThemes = [
+            { id: 'theme-envelope-velvet', name: 'Velvet Luxury', bg: 'linear-gradient(135deg, #3b0914, #27040c)' },
+            { id: 'theme-palembang', name: 'Palembang Classic', bg: 'linear-gradient(135deg, #2a080c, #1f0407)' },
+            { id: 'theme-jawa-royal', name: 'Royal Batik Jawa', bg: 'linear-gradient(135deg, #1a1612, #28221c)' },
+            { id: 'theme-minang', name: 'Minang Crimson', bg: 'linear-gradient(135deg, #4a0000, #330000)' },
+            { id: 'theme-chinese-radiance', name: 'Chinese Radiance', bg: 'linear-gradient(135deg, #7a0010, #52000b)' },
+            { id: 'theme-floral', name: 'Floral Botanical', bg: 'linear-gradient(135deg, #556b2f, #a2b86c)' },
+            { id: 'theme-boho', name: 'Boho Pampas', bg: 'linear-gradient(135deg, #c86d51, #ebd3c8)' },
+            { id: 'theme-midnight', name: 'Midnight Glowing', bg: 'linear-gradient(135deg, #0c1017, #161f2e)' },
+            { id: 'theme-minimalist', name: 'High Fashion Mono', bg: 'linear-gradient(135deg, #111111, #444444)' },
+            { id: 'theme-emerald', name: 'Emerald Royalty', bg: 'linear-gradient(135deg, #127a53, #0a4f35)' }
+        ];
+
         document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            if(urlParams.get('to')) {
-                guestNameTarget = decodeURIComponent(urlParams.get('to'));
-                initApp(true); // Langsung ke mode tamu
+            const params = new URLSearchParams(window.location.search);
+            if(params.get('to')) {
+                guestTarget = decodeURIComponent(params.get('to'));
+                initApp(true);
+            } else if(params.get('share') === 'true') {
+                loadPublicShareView();
             } else {
                 initApp(false);
             }
         });
 
-        async function initApp(isDirectGuest = false) {
-            if(!isDirectGuest) renderTemplate('tpl-portal');
-            showLoading("Memuat Data Utama...");
+        async function initApp(isGuestMode = false) {
+            if(!isGuestMode) renderTemplate('tpl-portal');
+            showLoading("Memuat sistem Viding...");
             const res = await fetchAPI('get_data');
             hideLoading();
             if(res.success) {
                 appData = res.data;
-                if(isDirectGuest) loadGuestView();
+                if(isGuestMode) loadGuestView();
             } else {
                 showToast('error', 'Gagal memuat data dari server.');
             }
         }
 
-        function loadGuestView() { renderTemplate('tpl-invitation'); setupInvitation(); }
-        function loadLoginView() { if(sessionToken) { loadAdminDashboard(); } else { renderTemplate('tpl-login'); } }
+        function loadGuestView() { renderTemplate('tpl-invitation'); setupGuestView(); }
+        function loadLoginView() { if(sessionToken) loadAdminDashboard(); else renderTemplate('tpl-login'); }
+        function loadPublicShareView() { renderTemplate('tpl-public-share'); }
 
         function renderTemplate(tplId) {
             root.innerHTML = '';
             root.appendChild(document.getElementById(tplId).content.cloneNode(true));
         }
 
-        /* --- API HELPER --- */
         async function fetchAPI(action, payload = {}) {
-            // Mencegah error "Failed to fetch" jika URL Apps Script belum diubah
             if (APP_SCRIPT_URL.includes("AKfycbzzzzzz")) {
-                console.warn("Mode Demo Aktif: Menggunakan Mock API karena URL Apps Script masih bawaan.");
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        if (action === 'get_data') {
-                            resolve({ success: true, data: { theme: 'theme-gold', groomName: 'Romeo', brideName: 'Juliet', galleryUrls: [] } });
-                        } else if (action === 'login') {
-                            if (payload.username === 'admin' && payload.password === 'admin123') resolve({ success: true, data: { token: 'mock-token-123' } });
-                            else resolve({ success: false, message: 'Username atau Password Salah' });
-                        } else if (action === 'save_settings' || action === 'upload_media' || action === 'upload_transfer') {
-                            resolve({ success: true, message: 'Berhasil (Mode Simulasi)', data: { url: 'https://placehold.co/400x400/d4af37/ffffff?text=Media+Simulasi' } });
-                        } else {
-                            resolve({ success: false, message: 'Aksi tidak dikenal.' });
-                        }
-                    }, 500); // Simulasi delay loading jaringan
-                });
+                return new Promise(resolve => setTimeout(() => {
+                    if (action === 'get_data') resolve({ success: true, data: { theme: 'theme-envelope-velvet', groomName: 'Romeo', groomNickname: 'Romeo', brideName: 'Juliet', brideNickname: 'Juliet', akadDate: '2026-12-24', akadTime: '08:00', resepsiDate: '2026-12-24', resepsiTime: '11:00', galleryUrls: [] } });
+                    else if (action === 'login') resolve({ success: payload.username==='admin'&&payload.password==='admin123', data: { token: 'mock-123' }, message: 'Username/Pass Salah' });
+                    else resolve({ success: true, message: 'Simulasi Sukses', data: { url: 'https://placehold.co/400x400/c5a059/ffffff?text=Viding+Media' } });
+                }, 400));
             }
-
             try {
                 if(sessionToken) payload.sessionToken = sessionToken;
-                const req = await fetch(APP_SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({ action: action, payload: payload }),
-                    headers: { "Content-Type": "text/plain;charset=utf-8" }
-                });
-                return await req.json();
-            } catch (e) {
-                console.error(e);
-                return { success: false, message: "Terjadi kesalahan jaringan atau CORS." };
-            }
+                const res = await fetch(APP_SCRIPT_URL, { method: 'POST', body: JSON.stringify({ action, payload }), headers: { "Content-Type": "text/plain;charset=utf-8" } });
+                return await res.json();
+            } catch(e) { return { success: false, message: "Kesalahan koneksi." }; }
         }
 
-        async function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result.split(',')[1]);
-                reader.onerror = error => reject(error);
-            });
-        }
-
-        /* --- ADMIN AUTH --- */
         async function handleLogin(e) {
             e.preventDefault();
-            const u = document.getElementById('login-user').value;
-            const p = document.getElementById('login-pass').value;
-            showLoading("Memverifikasi...");
-            const res = await fetchAPI('login', { username: u, password: p });
+            showLoading("Memverifikasi Login...");
+            const res = await fetchAPI('login', { username: document.getElementById('login-user').value, password: document.getElementById('login-pass').value });
             hideLoading();
-            
-            if(res.success) {
-                sessionToken = res.data.token;
-                sessionStorage.setItem('adminToken', sessionToken);
-                showToast('success', 'Login Berhasil!');
-                loadAdminDashboard();
-            } else {
-                showToast('error', res.message);
-            }
-        }
-
-        /* --- ADMIN DASHBOARD --- */
-        const themes = [
-            { id: 'theme-gold', name: 'Gold Elegance', color: 'linear-gradient(135deg, #d4af37, #f3e5ab)' },
-            { id: 'theme-rustic', name: 'Rustic Green', color: 'linear-gradient(135deg, #6b8e23, #a2b86c)' },
-            { id: 'theme-midnight', name: 'Midnight Romance', color: 'linear-gradient(135deg, #0f172a, #334155)' },
-            { id: 'theme-rose', name: 'Rose Gold', color: 'linear-gradient(135deg, #b76e79, #e0bfb8)' },
-            { id: 'theme-vintage', name: 'Vintage Sepia', color: 'linear-gradient(135deg, #8b5a2b, #cda776)' },
-            { id: 'theme-sapphire', name: 'Royal Sapphire', color: 'linear-gradient(135deg, #0f52ba, #7cb9e8)' },
-            { id: 'theme-bohemian', name: 'Bohemian Earth', color: 'linear-gradient(135deg, #cd5c5c, #f4a460)' },
-            { id: 'theme-minimalist', name: 'Minimalist Pure', color: 'linear-gradient(135deg, #555555, #cccccc)' },
-            { id: 'theme-velvet', name: 'Velvet Burgundy', color: 'linear-gradient(135deg, #800020, #d87093)' },
-            { id: 'theme-emerald', name: 'Emerald Dream', color: 'linear-gradient(135deg, #50c878, #98ff98)' }
-        ];
-
-        function switchTab(tabId, el) {
-            document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
-            document.getElementById(tabId).style.display = 'block';
-            document.querySelectorAll('.sidebar-menu li').forEach(li => li.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        function selectTheme(themeId) {
-            appData.theme = themeId;
-            document.querySelectorAll('.theme-option').forEach(opt => {
-                opt.classList.toggle('active', opt.dataset.theme === themeId);
-            });
-        }
-
-        function handleAudioSelection() {
-            const select = document.getElementById('in-audio-select');
-            const customGroup = document.getElementById('custom-audio-group');
-            const preview = document.getElementById('audio-preview');
-            
-            if (select.value === 'custom') {
-                customGroup.style.display = 'block';
-                preview.style.display = 'none';
-                preview.pause();
-            } else if (select.value !== '') {
-                customGroup.style.display = 'none';
-                preview.src = select.value;
-                preview.style.display = 'block';
-            } else {
-                customGroup.style.display = 'none';
-                preview.style.display = 'none';
-                preview.pause();
-            }
+            if(res.success) { sessionToken = res.data.token; sessionStorage.setItem('adminToken', sessionToken); loadAdminDashboard(); }
+            else showToast('error', res.message);
         }
 
         function loadAdminDashboard() {
             renderTemplate('tpl-admin-dashboard');
-            
-            const themeGrid = document.getElementById('admin-theme-grid');
-            themes.forEach(t => {
-                const div = document.createElement('div');
-                div.className = `theme-option ${appData.theme === t.id ? 'active' : ''}`;
-                div.dataset.theme = t.id;
-                div.onclick = () => selectTheme(t.id);
-                div.innerHTML = `<div class="theme-color-preview" style="background: ${t.color};"></div><strong style="color: #334155; font-size: 1.1rem;">${t.name}</strong>`;
-                themeGrid.appendChild(div);
+            const themeContainer = document.getElementById('viding-theme-container');
+            vidingThemes.forEach(t => {
+                const card = document.createElement('div');
+                card.className = `viding-theme-card ${appData.theme === t.id ? 'active' : ''}`;
+                card.onclick = () => selectVidingTheme(t.id);
+                card.innerHTML = `<div class="viding-theme-preview" style="background: ${t.bg}">${t.name.split(' ')[0]}</div><p style="padding: 10px; font-weight: 700; text-align: center; color: #334155;">${t.name}</p>`;
+                themeContainer.appendChild(card);
             });
 
             document.getElementById('in-groom-name').value = appData.groomName || '';
@@ -532,31 +521,19 @@
             document.getElementById('in-bank-name').value = appData.bankName || '';
             document.getElementById('in-bank-account').value = appData.bankAccount || '';
             document.getElementById('in-bank-owner').value = appData.bankOwner || '';
-            
-            // Setup Audio dropdown
-            const audioSelect = document.getElementById('in-audio-select');
-            if (appData.audioUrl) {
-                let found = false;
-                for (let i = 0; i < audioSelect.options.length; i++) {
-                    if (audioSelect.options[i].value === appData.audioUrl) {
-                        audioSelect.selectedIndex = i;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) audioSelect.value = 'custom';
-            } else {
-                audioSelect.value = '';
-            }
-            handleAudioSelection();
+
+            const shareUrl = window.location.href.split('?')[0] + '?share=true';
+            document.getElementById('pub-share-link').innerText = shareUrl;
+        }
+
+        function selectVidingTheme(id) {
+            appData.theme = id;
+            document.querySelectorAll('.viding-theme-card').forEach(c => c.classList.remove('active'));
+            event.currentTarget.classList.add('active');
         }
 
         async function saveAllSettings() {
-            showLoading("Menyimpan ke Database...");
-            
-            const audioSelectVal = document.getElementById('in-audio-select').value;
-            const finalAudioUrl = (audioSelectVal && audioSelectVal !== 'custom') ? audioSelectVal : appData.audioUrl;
-            
+            showLoading("Menyimpan Pengaturan...");
             const payload = {
                 theme: appData.theme,
                 groomName: document.getElementById('in-groom-name').value,
@@ -574,259 +551,164 @@
                 bankName: document.getElementById('in-bank-name').value,
                 bankAccount: document.getElementById('in-bank-account').value,
                 bankOwner: document.getElementById('in-bank-owner').value,
-                audioUrl: finalAudioUrl
+                audioUrl: document.getElementById('in-audio-select').value
             };
-            
             const res = await fetchAPI('save_settings', payload);
             hideLoading();
-            if(res.success) {
-                appData = {...appData, ...payload};
-                showToast('success', 'Pengaturan berhasil disimpan!');
-            } else {
-                showToast('error', res.message);
-            }
+            if(res.success) showToast('success', 'Pengaturan berhasil disimpan!');
         }
 
-        async function uploadSingleMedia(type) {
-            let fileInput;
-            if(type === 'gallery') fileInput = document.getElementById('in-gallery-upload');
-            if(type === 'audio') fileInput = document.getElementById('in-audio-upload');
-            if(type === 'qris') fileInput = document.getElementById('in-qris-upload');
-            
-            if(!fileInput.files.length) return showToast('error', 'Pilih file terlebih dahulu');
-            
-            const file = fileInput.files[0];
-            showLoading("Mengunggah ke Drive...");
-            
+        function previewSelectedMusic() {
+            const player = document.getElementById('admin-audio-player');
+            player.src = document.getElementById('in-audio-select').value;
+            player.play();
+        }
+
+        function generatePublicLink() {
+            const name = document.getElementById('pub-guest-name').value.trim();
+            if(!name) return showToast('error', 'Masukkan nama tamu terlebih dahulu!');
+            const url = window.location.href.split('?')[0] + '?to=' + encodeURIComponent(name);
+            document.getElementById('pub-link-url').innerText = url;
+            document.getElementById('pub-result-box').style.display = 'block';
+        }
+
+        function copyToClipboardText(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.top = '0';
+            textarea.style.left = '0';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
             try {
-                const base64Data = await fileToBase64(file);
-                const res = await fetchAPI('upload_media', { 
-                    fileData: base64Data, 
-                    fileName: file.name, 
-                    mimeType: file.type,
-                    uploadType: type
-                });
-                
-                hideLoading();
-                if(res.success) {
-                    showToast('success', 'File berhasil diunggah!');
-                    if(type === 'gallery') {
-                        if(!appData.galleryUrls) appData.galleryUrls = [];
-                        appData.galleryUrls.push(res.data.url);
-                    } else if(type === 'audio') {
-                        appData.audioUrl = res.data.url;
-                        document.getElementById('audio-preview').src = appData.audioUrl;
-                        document.getElementById('audio-preview').style.display = 'block';
-                    } else if(type === 'qris') {
-                        appData.qrisUrl = res.data.url;
-                    }
-                    fileInput.value = "";
-                } else {
-                    showToast('error', res.message);
-                }
-            } catch(e) {
-                hideLoading();
-                showToast('error', 'Gagal memproses file.');
+                document.execCommand('copy');
+            } catch (err) {
+                console.error('Gagal menyalin teks:', err);
             }
+            document.body.removeChild(textarea);
         }
 
-        function generateLink() {
-            const name = document.getElementById('generator-name').value.trim();
-            if(!name) return showToast('error', 'Masukkan nama tamu terlebih dahulu');
-            const baseUrl = window.location.href.split('?')[0];
-            const finalLink = `${baseUrl}?to=${encodeURIComponent(name)}`;
-            document.getElementById('result-link').innerText = finalLink;
-            document.getElementById('generated-result').style.display = 'block';
+        function copyPublicLink() {
+            copyToClipboardText(document.getElementById('pub-link-url').innerText);
+            showToast('success', 'Link disalin!');
         }
+        function previewPublicLink() { window.open(document.getElementById('pub-link-url').innerText, '_blank'); }
+        function copyPublicShareLink() { copyToClipboardText(document.getElementById('pub-share-link').innerText); showToast('success', 'Link generator disalin!'); }
 
-        function copyLink() {
-            const linkText = document.getElementById('result-link').innerText;
-            navigator.clipboard.writeText(linkText).then(() => showToast('success', 'Link disalin!')).catch(() => {
-                const ta = document.createElement("textarea"); ta.value = linkText; document.body.appendChild(ta); ta.select();
-                try { document.execCommand('copy'); showToast('success', 'Link disalin!'); } catch (e) { showToast('error', 'Gagal menyalin.'); }
-                document.body.removeChild(ta);
-            });
-        }
-
-        function previewLink() {
-            const linkText = document.getElementById('result-link').innerText;
-            if(linkText) window.open(linkText, '_blank');
-        }
-
-        /* --- DATE FORMATTER --- */
-        function formatDateIndo(dateStr) {
-            if(!dateStr) return '-';
-            try {
-                const d = new Date(dateStr);
-                if(isNaN(d.getTime())) return dateStr;
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                return d.toLocaleDateString('id-ID', options);
-            } catch(e) { return dateStr; }
-        }
-
-        function formatTimeOnly(timeStr) {
-            if (!timeStr) return '-';
-            // Jika format awal sudah HH:MM
-            if (/^\d{2}:\d{2}$/.test(timeStr) || /^\d{2}:\d{2}:\d{2}$/.test(timeStr)) {
-                return timeStr.substring(0, 5);
-            }
-            // Jika string timestamp dari Google Apps Script (contoh: 1899-12-30T00:52:48.000Z)
-            try {
-                const d = new Date(timeStr);
-                if (!isNaN(d.getTime())) {
-                    let h = d.getHours().toString().padStart(2, '0');
-                    let m = d.getMinutes().toString().padStart(2, '0');
-                    return `${h}:${m}`;
-                }
-            } catch(e) {}
-            // Fallback manual memotong dari huruf T
-            return timeStr.length > 5 && timeStr.includes('T') ? timeStr.split('T')[1].substring(0,5) : timeStr;
-        }
-
-        /* --- GUEST INVITATION --- */
-        let isAudioPlaying = false;
-        function setupInvitation() {
+        /* GUEST VIEW LOGIC */
+        function setupGuestView() {
             const wrapper = document.getElementById('inv-wrapper');
-            wrapper.className = `invitation-wrapper ${appData.theme || 'theme-gold'}`;
+            wrapper.className = `invitation-wrapper ${appData.theme || 'theme-envelope-velvet'}`;
 
-            // Menyembunyikan tombol 'Beranda' jika diakses menggunakan link tamu
-            if(window.location.search.includes('to=')) {
-                document.getElementById('btn-back-portal').style.display = 'none';
-            }
+            const gNick = appData.groomNickname || 'Pria';
+            const bNick = appData.brideNickname || 'Wanita';
+            const title = `${gNick} & ${bNick}`;
 
-            const groomNick = appData.groomNickname || (appData.groomName || 'Pria').split(' ')[0];
-            const brideNick = appData.brideNickname || (appData.brideName || 'Wanita').split(' ')[0];
-            const coupleTitle = `${groomNick} & ${brideNick}`;
-            
-            document.getElementById('out-cover-title').innerText = coupleTitle;
-            document.getElementById('out-footer-title').innerText = coupleTitle;
-            document.getElementById('out-cover-date').innerText = formatDateIndo(appData.akadDate).toUpperCase();
-            document.getElementById('out-guest-name').innerText = guestNameTarget;
-            
-            // Set Inisial Avatar berdasarkan Nickname
-            document.getElementById('out-groom-img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(groomNick)}&color=fff&size=200`;
-            document.getElementById('out-bride-img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(brideNick)}&color=fff&size=200`;
+            document.getElementById('out-cover-title').innerText = title;
+            document.getElementById('out-hero-title').innerText = title;
+            document.getElementById('out-footer-title').innerText = title;
+            document.getElementById('out-guest-name').innerText = guestTarget;
 
-            document.getElementById('out-groom-nickname').innerText = groomNick;
-            document.getElementById('out-groom-name').innerText = appData.groomName || 'Nama Lengkap Pria';
-            document.getElementById('out-groom-parents').innerText = appData.groomParents || 'Orang Tua';
-            
-            document.getElementById('out-bride-nickname').innerText = brideNick;
-            document.getElementById('out-bride-name').innerText = appData.brideName || 'Nama Lengkap Wanita';
-            document.getElementById('out-bride-parents').innerText = appData.brideParents || 'Orang Tua';
-            
+            document.getElementById('out-groom-nick').innerText = gNick;
+            document.getElementById('out-groom-full').innerText = appData.groomName || 'Nama Lengkap Pria';
+            document.getElementById('out-groom-parents').innerText = appData.groomParents || 'Orang Tua Pria';
+            document.getElementById('out-groom-img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(gNick)}&background=c5a059&color=fff&size=200`;
+
+            document.getElementById('out-bride-nick').innerText = bNick;
+            document.getElementById('out-bride-full').innerText = appData.brideName || 'Nama Lengkap Wanita';
+            document.getElementById('out-bride-parents').innerText = appData.brideParents || 'Orang Tua Wanita';
+            document.getElementById('out-bride-img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(bNick)}&background=c5a059&color=fff&size=200`;
+
             document.getElementById('out-akad-date').innerText = formatDateIndo(appData.akadDate);
-            document.getElementById('out-akad-time').innerText = appData.akadTime ? `${formatTimeOnly(appData.akadTime)} WIB` : '-';
+            document.getElementById('out-akad-time').innerText = (appData.akadTime || '08:00') + ' WIB';
             document.getElementById('out-resepsi-date').innerText = formatDateIndo(appData.resepsiDate);
-            document.getElementById('out-resepsi-time').innerText = appData.resepsiTime ? `${formatTimeOnly(appData.resepsiTime)} WIB - Selesai` : '-';
-            
-            document.getElementById('out-location-name').innerText = appData.locationName || '-';
-            
-            const locBtn = document.getElementById('out-location-btn');
-            if(appData.locationLink) {
-                locBtn.href = appData.locationLink;
-                locBtn.style.display = 'inline-block';
-            } else {
-                locBtn.style.display = 'none';
-            }
+            document.getElementById('out-resepsi-time').innerText = (appData.resepsiTime || '11:00') + ' WIB - Selesai';
 
-            // Set Gallery
-            const galContainer = document.getElementById('out-gallery-container');
-            galContainer.innerHTML = '';
+            document.getElementById('out-location-name').innerText = appData.locationName || 'Gedung Pernikahan';
+            document.getElementById('out-location-link').href = appData.locationLink || '#';
+
+            document.getElementById('out-qris-img').src = appData.qrisUrl || 'https://placehold.co/200x200/c5a059/ffffff?text=QRIS';
+            document.getElementById('out-bank-name').innerText = appData.bankName || 'BCA';
+            document.getElementById('out-bank-acc').innerText = appData.bankAccount || '1234567890';
+            document.getElementById('out-bank-owner').innerText = appData.bankOwner || 'Atas Nama';
+
+            // Gallery
+            const gGrid = document.getElementById('out-gallery-grid');
+            gGrid.innerHTML = '';
             if(appData.galleryUrls && appData.galleryUrls.length > 0) {
                 appData.galleryUrls.forEach(url => {
                     const img = document.createElement('img');
                     img.src = url;
-                    galContainer.appendChild(img);
+                    img.onclick = () => openLightbox(url);
+                    gGrid.appendChild(img);
                 });
             } else {
-                galContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">Belum ada foto galeri.</p>';
+                gGrid.innerHTML = '<p style="grid-column: 1/-1; color: #888;">Belum ada foto galeri.</p>';
             }
 
-            // Set QRIS & Bank
-            document.getElementById('out-qris-img').src = appData.qrisUrl || 'https://placehold.co/200x200/eee/999?text=QRIS+Belum+Diatur';
-            document.getElementById('out-bank-name').innerText = appData.bankName || '-';
-            document.getElementById('out-bank-account').innerText = appData.bankAccount || '-';
-            document.getElementById('out-bank-owner').innerText = appData.bankOwner || '-';
-
-            // Set Audio
-            const bgm = document.getElementById('inv-bgm');
-            if(appData.audioUrl) bgm.src = appData.audioUrl;
+            // Audio
+            if(appData.audioUrl) document.getElementById('inv-bgm').src = appData.audioUrl;
+            
+            // Countdown
+            startCountdown(appData.akadDate || '2026-12-24');
         }
 
-        function openInvitation() {
-            document.getElementById('cover-screen').style.transform = 'translateY(-100%)';
-            document.getElementById('cover-screen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('cover-screen').style.display = 'none';
-            }, 1000);
-            
-            document.getElementById('inv-wrapper').classList.add('open');
+        function openEnvelope() {
+            document.getElementById('cover-envelope').classList.add('open');
+            document.getElementById('floating-nav').classList.add('active');
             document.getElementById('audio-toggle').classList.add('visible');
-            
             const bgm = document.getElementById('inv-bgm');
-            if(bgm.src && bgm.src !== window.location.href) {
-                bgm.play().then(() => {
-                    isAudioPlaying = true; 
-                    document.getElementById('audio-icon').className = 'fas fa-compact-disc spin';
-                }).catch(e => console.log("Autoplay prevented by browser"));
-            }
+            if(bgm.src) bgm.play().catch(() => {});
         }
 
+        let isPlaying = true;
         function toggleAudio() {
             const bgm = document.getElementById('inv-bgm');
-            const icon = document.getElementById('audio-icon');
-            if (isAudioPlaying) { bgm.pause(); isAudioPlaying = false; icon.className = 'fas fa-play'; } 
-            else { bgm.play(); isAudioPlaying = true; icon.className = 'fas fa-compact-disc spin'; }
+            if(isPlaying) { bgm.pause(); isPlaying = false; }
+            else { bgm.play(); isPlaying = true; }
         }
 
-        function stopAudio() {
-            const bgm = document.getElementById('inv-bgm');
-            if(bgm) { bgm.pause(); bgm.currentTime = 0; }
-            isAudioPlaying = false;
+        function startCountdown(targetDateStr) {
+            clearInterval(countdownInterval);
+            const target = new Date(targetDateStr + "T00:00:00").getTime();
+            countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const diff = target - now;
+                if(diff < 0) return clearInterval(countdownInterval);
+                document.getElementById('cd-days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('cd-hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('cd-minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('cd-seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }, 1000);
         }
 
-        async function guestSubmitUpload(e) {
-            e.preventDefault();
-            const sender = document.getElementById('tf-sender').value;
-            const fileInput = document.getElementById('tf-file');
-            
-            if(!fileInput.files.length) return;
-            showLoading("Mengirim Bukti Transfer...");
-            
+        function openLightbox(url) { document.getElementById('lightbox-img').src = url; document.getElementById('lightbox-modal').style.display = 'flex'; }
+        function closeLightbox() { document.getElementById('lightbox-modal').style.display = 'none'; }
+        function copyBankAcc() { copyToClipboardText(document.getElementById('out-bank-acc').innerText); showToast('success', 'Nomor rekening berhasil disalin!'); }
+
+        function formatDateIndo(dStr) {
+            if(!dStr) return '-';
             try {
-                const base64Data = await fileToBase64(fileInput.files[0]);
-                const res = await fetchAPI('upload_transfer', { 
-                    senderName: sender,
-                    fileData: base64Data, 
-                    fileName: fileInput.files[0].name,
-                    mimeType: fileInput.files[0].type
-                });
-                
-                hideLoading();
-                if(res.success) {
-                    showToast('success', 'Terima kasih! Bukti transfer berhasil dikirim.');
-                    e.target.reset();
-                } else {
-                    showToast('error', res.message);
-                }
-            } catch(error) {
-                hideLoading();
-                showToast('error', 'Gagal mengirim bukti transfer.');
-            }
+                const d = new Date(dStr);
+                return d.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            } catch(e) { return dStr; }
         }
 
-        function showLoading(msg = "Memproses...") { 
-            document.getElementById('load-msg').innerText = msg;
-            document.getElementById('loading-overlay').classList.add('active'); 
+        function switchTab(id, el) {
+            document.querySelectorAll('.admin-tab').forEach(t => t.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            document.querySelectorAll('.sidebar-menu li').forEach(l => l.classList.remove('active'));
+            el.classList.add('active');
         }
+
+        function showLoading(msg) { document.getElementById('load-msg').innerText = msg; document.getElementById('loading-overlay').classList.add('active'); }
         function hideLoading() { document.getElementById('loading-overlay').classList.remove('active'); }
         function showToast(type, msg) {
             const c = document.getElementById('toast-container'); const t = document.createElement('div');
-            const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
-            t.className = `toast ${type}`; t.innerHTML = `<i class="fas ${icon}"></i> <span>${msg}</span>`;
-            c.appendChild(t); setTimeout(() => t.classList.add('show'), 10);
-            setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3500);
+            t.className = `toast ${type} show`; t.innerHTML = `<i class="fas fa-info-circle"></i> <span>${msg}</span>`;
+            c.appendChild(t); setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3500);
         }
     </script>
 </body>
