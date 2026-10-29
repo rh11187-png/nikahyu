@@ -226,9 +226,26 @@
                         <button class="btn btn-primary" onclick="uploadSingleMedia('gallery')">Upload Foto ke Galeri</button>
                     </div>
                     <div class="admin-card">
-                        <h3 class="admin-card-title">Musik Latar (BGM)</h3>
-                        <div class="form-group"><label>Ganti .mp3</label><input type="file" id="in-audio-upload" class="form-control" accept="audio/*"></div>
-                        <button class="btn btn-primary" onclick="uploadSingleMedia('audio')">Upload Musik</button>
+                        <h3 class="admin-card-title"><i class="fas fa-music"></i> Musik Latar (BGM)</h3>
+                        <div class="form-group">
+                            <label>Pilih Lagu Pernikahan</label>
+                            <select id="in-audio-select" class="form-control" onchange="handleAudioSelection()">
+                                <option value="">-- Tanpa Musik / Default --</option>
+                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3">Beautiful In White (Piano Cover)</option>
+                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3">A Thousand Years (Instrumental Barat)</option>
+                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3">Janji Suci (Pop Indonesia)</option>
+                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3">Sempurna (Acoustic Romantis)</option>
+                                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3">Canon In D - Pachelbel (Klasik)</option>
+                                <option value="custom">-- Upload Lagu Sendiri (.mp3) --</option>
+                            </select>
+                        </div>
+                        
+                        <audio id="audio-preview" controls style="width: 100%; margin-bottom: 15px; display: none; border-radius: 8px;"></audio>
+                        
+                        <div id="custom-audio-group" style="display: none; padding: 15px; background: #f8fafc; border-radius: 10px; border: 1px dashed #cbd5e1;">
+                            <div class="form-group"><label>Ganti .mp3 (Manual)</label><input type="file" id="in-audio-upload" class="form-control" accept="audio/*"></div>
+                            <button class="btn btn-primary" onclick="uploadSingleMedia('audio')">Upload Musik Manual</button>
+                        </div>
                     </div>
                 </div>
                 <!-- KEUANGAN -->
@@ -467,6 +484,26 @@
             });
         }
 
+        function handleAudioSelection() {
+            const select = document.getElementById('in-audio-select');
+            const customGroup = document.getElementById('custom-audio-group');
+            const preview = document.getElementById('audio-preview');
+            
+            if (select.value === 'custom') {
+                customGroup.style.display = 'block';
+                preview.style.display = 'none';
+                preview.pause();
+            } else if (select.value !== '') {
+                customGroup.style.display = 'none';
+                preview.src = select.value;
+                preview.style.display = 'block';
+            } else {
+                customGroup.style.display = 'none';
+                preview.style.display = 'none';
+                preview.pause();
+            }
+        }
+
         function loadAdminDashboard() {
             renderTemplate('tpl-admin-dashboard');
             
@@ -495,10 +532,31 @@
             document.getElementById('in-bank-name').value = appData.bankName || '';
             document.getElementById('in-bank-account').value = appData.bankAccount || '';
             document.getElementById('in-bank-owner').value = appData.bankOwner || '';
+            
+            // Setup Audio dropdown
+            const audioSelect = document.getElementById('in-audio-select');
+            if (appData.audioUrl) {
+                let found = false;
+                for (let i = 0; i < audioSelect.options.length; i++) {
+                    if (audioSelect.options[i].value === appData.audioUrl) {
+                        audioSelect.selectedIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) audioSelect.value = 'custom';
+            } else {
+                audioSelect.value = '';
+            }
+            handleAudioSelection();
         }
 
         async function saveAllSettings() {
             showLoading("Menyimpan ke Database...");
+            
+            const audioSelectVal = document.getElementById('in-audio-select').value;
+            const finalAudioUrl = (audioSelectVal && audioSelectVal !== 'custom') ? audioSelectVal : appData.audioUrl;
+            
             const payload = {
                 theme: appData.theme,
                 groomName: document.getElementById('in-groom-name').value,
@@ -515,7 +573,8 @@
                 locationLink: document.getElementById('in-location-link').value,
                 bankName: document.getElementById('in-bank-name').value,
                 bankAccount: document.getElementById('in-bank-account').value,
-                bankOwner: document.getElementById('in-bank-owner').value
+                bankOwner: document.getElementById('in-bank-owner').value,
+                audioUrl: finalAudioUrl
             };
             
             const res = await fetchAPI('save_settings', payload);
@@ -556,6 +615,8 @@
                         appData.galleryUrls.push(res.data.url);
                     } else if(type === 'audio') {
                         appData.audioUrl = res.data.url;
+                        document.getElementById('audio-preview').src = appData.audioUrl;
+                        document.getElementById('audio-preview').style.display = 'block';
                     } else if(type === 'qris') {
                         appData.qrisUrl = res.data.url;
                     }
