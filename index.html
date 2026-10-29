@@ -70,26 +70,32 @@
         .portal-guest { background: #ffffff; color: #d4af37; border-color: #d4af37; } .portal-guest:hover { background: #d4af37; color: #fff; transform: translateY(-3px); }
         .portal-admin { background: #2c3e50; color: #fff; } .portal-admin:hover { background: #1a252f; transform: translateY(-3px); }
 
-        /* ADMIN */
-        .admin-layout { display: flex; height: 100vh; background: var(--admin-bg); overflow: hidden; font-family: 'Lato', sans-serif; }
-        .admin-sidebar { width: 260px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: var(--admin-sidebar-text); display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 10; }
-        .sidebar-header { padding: 25px 20px; background: rgba(0,0,0,0.25); text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .sidebar-menu { list-style: none; padding: 10px 0; margin: 0; flex: 1; overflow-y: auto; }
-        .sidebar-menu li { padding: 15px 25px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 1.05rem; }
-        .sidebar-menu li:hover { background: rgba(255,255,255,0.05); color: #fff; }
-        .sidebar-menu li.active { background: linear-gradient(90deg, rgba(212,175,55,0.15) 0%, transparent 100%); border-left-color: #d4af37; color: #d4af37; }
+        /* ADMIN - MODERN REDESIGN */
+        .admin-layout { display: flex; height: 100vh; background: #f1f5f9; overflow: hidden; font-family: 'Lato', sans-serif; }
+        .admin-sidebar { width: 280px; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); color: #cbd5e1; display: flex; flex-direction: column; box-shadow: 4px 0 25px rgba(0,0,0,0.1); z-index: 10; border-right: 1px solid rgba(255,255,255,0.05); }
+        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .sidebar-menu { list-style: none; padding: 20px 10px; margin: 0; flex: 1; overflow-y: auto; }
+        .sidebar-menu li { padding: 15px 20px; cursor: pointer; margin-bottom: 5px; border-radius: 12px; transition: all 0.3s ease; display: flex; align-items: center; gap: 15px; font-weight: 600; font-size: 1.05rem; }
+        .sidebar-menu li:hover { background: rgba(255,255,255,0.08); color: #fff; transform: translateX(5px); }
+        .sidebar-menu li.active { background: #4f46e5; color: #ffffff; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); }
         .admin-content { flex: 1; overflow-y: auto; padding: 40px; background: #f8fafc; }
-        .admin-card { background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 30px; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .admin-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
-        .admin-card-title { font-size: 1.3rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 25px; color: #1e293b; display: flex; align-items: center; gap: 10px; }
-        .admin-card-title i { color: #d4af37; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
-        .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-        .theme-option { border: 2px solid #eee; border-radius: 10px; padding: 15px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .theme-option:hover, .theme-option.active { border-color: #d4af37; transform: translateY(-3px); }
-        .theme-option.active { background: #fbf8f1; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
-        .theme-color-preview { width: 40px; height: 40px; border-radius: 50%; margin: 0 auto 10px; border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .admin-card { background: #ffffff; border-radius: 20px; padding: 35px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); margin-bottom: 30px; border: 1px solid rgba(226, 232, 240, 0.8); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .admin-card:hover { box-shadow: 0 15px 50px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .admin-card-title { font-size: 1.4rem; font-family: 'Lato', sans-serif; font-weight: 700; margin-bottom: 25px; color: #0f172a; display: flex; align-items: center; gap: 12px; }
+        .admin-card-title i { color: #4f46e5; background: #e0e7ff; padding: 10px; border-radius: 10px; font-size: 1.1rem; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .form-control { background: #f1f5f9; border: 2px solid transparent; padding: 12px 18px; transition: 0.3s; font-size: 1rem; }
+        .form-control:focus { background: #ffffff; border-color: #4f46e5; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
+        .form-group label { color: #475569; font-weight: 700; margin-bottom: 0.8rem; }
+        
+        .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .theme-option { background: #ffffff; border: 2px solid #e2e8f0; border-radius: 16px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; padding-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .theme-option:hover { border-color: #4f46e5; transform: translateY(-5px); box-shadow: 0 10px 25px rgba(79,70,229,0.15); }
+        .theme-option.active { border-color: #4f46e5; background: #f5f3ff; }
+        .theme-color-preview { width: 100%; height: 90px; margin-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .theme-option.active::after { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 10px; right: 10px; color: #ffffff; font-size: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
         /* GUEST VIEW */
         .invitation-wrapper { background-color: var(--bg-color); color: var(--text-dark); overflow-y: hidden; height: 100vh; position: relative; transition: background-color 0.5s, color 0.5s; }
@@ -435,10 +441,16 @@
 
         /* --- ADMIN DASHBOARD --- */
         const themes = [
-            { id: 'theme-gold', name: 'Gold Elegance', color: '#d4af37' },
-            { id: 'theme-rustic', name: 'Rustic Green', color: '#6b8e23' },
-            { id: 'theme-midnight', name: 'Midnight Romance', color: '#0f172a' },
-            { id: 'theme-rose', name: 'Rose Gold', color: '#b76e79' }
+            { id: 'theme-gold', name: 'Gold Elegance', color: 'linear-gradient(135deg, #d4af37, #f3e5ab)' },
+            { id: 'theme-rustic', name: 'Rustic Green', color: 'linear-gradient(135deg, #6b8e23, #a2b86c)' },
+            { id: 'theme-midnight', name: 'Midnight Romance', color: 'linear-gradient(135deg, #0f172a, #334155)' },
+            { id: 'theme-rose', name: 'Rose Gold', color: 'linear-gradient(135deg, #b76e79, #e0bfb8)' },
+            { id: 'theme-vintage', name: 'Vintage Sepia', color: 'linear-gradient(135deg, #8b5a2b, #cda776)' },
+            { id: 'theme-sapphire', name: 'Royal Sapphire', color: 'linear-gradient(135deg, #0f52ba, #7cb9e8)' },
+            { id: 'theme-bohemian', name: 'Bohemian Earth', color: 'linear-gradient(135deg, #cd5c5c, #f4a460)' },
+            { id: 'theme-minimalist', name: 'Minimalist Pure', color: 'linear-gradient(135deg, #555555, #cccccc)' },
+            { id: 'theme-velvet', name: 'Velvet Burgundy', color: 'linear-gradient(135deg, #800020, #d87093)' },
+            { id: 'theme-emerald', name: 'Emerald Dream', color: 'linear-gradient(135deg, #50c878, #98ff98)' }
         ];
 
         function switchTab(tabId, el) {
@@ -464,7 +476,7 @@
                 div.className = `theme-option ${appData.theme === t.id ? 'active' : ''}`;
                 div.dataset.theme = t.id;
                 div.onclick = () => selectTheme(t.id);
-                div.innerHTML = `<div class="theme-color-preview" style="background: ${t.color};"></div><strong>${t.name}</strong>`;
+                div.innerHTML = `<div class="theme-color-preview" style="background: ${t.color};"></div><strong style="color: #334155; font-size: 1.1rem;">${t.name}</strong>`;
                 themeGrid.appendChild(div);
             });
 
@@ -591,6 +603,25 @@
             } catch(e) { return dateStr; }
         }
 
+        function formatTimeOnly(timeStr) {
+            if (!timeStr) return '-';
+            // Jika format awal sudah HH:MM
+            if (/^\d{2}:\d{2}$/.test(timeStr) || /^\d{2}:\d{2}:\d{2}$/.test(timeStr)) {
+                return timeStr.substring(0, 5);
+            }
+            // Jika string timestamp dari Google Apps Script (contoh: 1899-12-30T00:52:48.000Z)
+            try {
+                const d = new Date(timeStr);
+                if (!isNaN(d.getTime())) {
+                    let h = d.getHours().toString().padStart(2, '0');
+                    let m = d.getMinutes().toString().padStart(2, '0');
+                    return `${h}:${m}`;
+                }
+            } catch(e) {}
+            // Fallback manual memotong dari huruf T
+            return timeStr.length > 5 && timeStr.includes('T') ? timeStr.split('T')[1].substring(0,5) : timeStr;
+        }
+
         /* --- GUEST INVITATION --- */
         let isAudioPlaying = false;
         function setupInvitation() {
@@ -624,9 +655,9 @@
             document.getElementById('out-bride-parents').innerText = appData.brideParents || 'Orang Tua';
             
             document.getElementById('out-akad-date').innerText = formatDateIndo(appData.akadDate);
-            document.getElementById('out-akad-time').innerText = appData.akadTime ? `${appData.akadTime} WIB` : '-';
+            document.getElementById('out-akad-time').innerText = appData.akadTime ? `${formatTimeOnly(appData.akadTime)} WIB` : '-';
             document.getElementById('out-resepsi-date').innerText = formatDateIndo(appData.resepsiDate);
-            document.getElementById('out-resepsi-time').innerText = appData.resepsiTime ? `${appData.resepsiTime} WIB - Selesai` : '-';
+            document.getElementById('out-resepsi-time').innerText = appData.resepsiTime ? `${formatTimeOnly(appData.resepsiTime)} WIB - Selesai` : '-';
             
             document.getElementById('out-location-name').innerText = appData.locationName || '-';
             
